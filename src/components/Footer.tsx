@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 const navLinks = [
   { href: "#over-ons", label: "Over ons" },
   { href: "#menu",     label: "De kaart" },
@@ -37,15 +35,12 @@ export default function Footer() {
       <div className="relative max-w-6xl mx-auto px-6 py-16">
         <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-10 mb-12">
 
-          {/* Brand — real logo */}
+          {/* Brand — text logo */}
           <div className="md:col-span-1">
-            <Image
-              src="/logo-kloeg.webp"
-              alt="Café De Kloeg"
-              width={80}
-              height={100}
-              className="object-contain mb-4"
-            />
+            <div className="mb-4">
+              <p className="text-brand-gold text-[10px] tracking-[0.25em] uppercase">Eetcafé</p>
+              <h3 className="font-display text-2xl font-bold text-brand-chalk">DE KLOEG</h3>
+            </div>
             <p className="font-body text-sm leading-relaxed" style={{ color: "rgba(201,180,138,0.5)" }}>
               Eetcafé in Kralingen.<br />Geen gedoe, gewoon lekker.
             </p>
@@ -74,7 +69,7 @@ export default function Footer() {
                 <li key={href}>
                   <a
                     href={href}
-                    className="font-body text-sm transition-colors"
+                    className="font-body text-sm transition-colors hover:text-brand-gold"
                     style={{ color: "rgba(201,180,138,0.55)" }}
                   >
                     {label}

@@ -84,10 +84,10 @@ export default function RootLayout({
               telephone: "",
               address: {
                 "@type": "PostalAddress",
-                streetAddress: "Libanонweg",
+                streetAddress: "Libanonweg 18",
                 addressLocality: "Rotterdam",
                 addressRegion: "Zuid-Holland",
-                postalCode: "3063",
+                postalCode: "3061 KJ",
                 addressCountry: "NL",
               },
               openingHoursSpecification: [

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 
 interface GoogleReview {
   author_name: string;
@@ -77,24 +76,13 @@ function ReviewCard({ review, delay }: { review: GoogleReview; delay: number }) 
         </blockquote>
 
         <footer className="flex items-center gap-3">
-          {review.profile_photo_url ? (
-            <Image
-              src={review.profile_photo_url}
-              alt={`Profielfoto van ${review.author_name}`}
-              width={36}
-              height={36}
-              className="rounded-full object-cover flex-shrink-0"
-              unoptimized
-            />
-          ) : (
-            <div
-              className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 font-sans font-bold text-sm text-brand-chalk"
-              style={{ background: "linear-gradient(135deg, #6B1A2A, #A8401E)" }}
-              aria-hidden="true"
-            >
-              {review.author_name.charAt(0)}
-            </div>
-          )}
+          <div
+            className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 font-sans font-bold text-sm text-brand-chalk"
+            style={{ background: "linear-gradient(135deg, #6B1A2A, #A8401E)" }}
+            aria-hidden="true"
+          >
+            {review.author_name.charAt(0)}
+          </div>
           <div>
             <p className="font-sans font-semibold text-sm" style={{ color: "#2A1E12" }}>{review.author_name}</p>
             <p className="label-caps text-[10px]" style={{ color: "#7A5C40" }}>
@@ -172,9 +160,6 @@ function FallbackReviews() {
       <div className="grid md:grid-cols-3 gap-6">
         {reviews.map((r, i) => <ReviewCard key={r.author_name} review={r} delay={i * 0.08} />)}
       </div>
-      <p className="text-center mt-6 label-caps text-[10px]" style={{ color: "rgba(122,92,64,0.4)" }}>
-        Stel GOOGLE_PLACES_API_KEY in .env.local in voor live Google reviews
-      </p>
     </>
   );
 }
@@ -227,7 +212,7 @@ export default function GoogleReviews() {
 
         <div className="text-center mt-12 reveal">
           <a
-            href="https://search.google.com/local/reviews?placeid=ChIJ-De-Kloeg-Rotterdam"
+            href="https://g.page/cafedekloeg/review"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 label-caps text-[11px] hover:underline"

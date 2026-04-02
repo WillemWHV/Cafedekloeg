@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 
 const links = [
   { href: "#over-ons", label: "Over ons" },
@@ -60,20 +59,14 @@ export default function Navigation() {
       )}
 
       <nav className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between" aria-label="Hoofdnavigatie">
-        {/* Real logo in nav — smaller, on white/transparent */}
+        {/* Text logo fallback */}
         <a
           href="#"
           onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
           aria-label="Café De Kloeg — naar boven"
           className="hover:opacity-80 transition-opacity flex-shrink-0"
         >
-          <Image
-            src="/logo-kloeg.webp"
-            alt="Café De Kloeg"
-            width={48}
-            height={60}
-            className="object-contain"
-          />
+          <span className="font-display text-xl font-bold text-brand-chalk">DE KLOEG</span>
         </a>
 
         {/* Desktop links */}

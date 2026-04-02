@@ -1,7 +1,6 @@
-import Image from "next/image";
+"use client";
 
-// Hero uses the real cafe exterior photo as background
-// Logo is the actual KLO_logo webp from the brand
+// Hero section - works without images by using CSS gradients as fallback
 
 export default function Hero() {
   return (
@@ -9,14 +8,13 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       aria-label="Welkom bij Café De Kloeg"
     >
-      {/* ── Real cafe photo as background ─────────────────────────── */}
-      <Image
-        src="/cafe-exterior.jpg"
-        alt="Café De Kloeg — hoekpand Libanonweg, Kralingen Rotterdam"
-        fill
-        className="object-cover object-center"
-        priority
-        quality={85}
+      {/* ── Background gradient (fallback when no image) ─────────────────────────── */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: "linear-gradient(135deg, #2A1E12 0%, #4A3320 50%, #2A1E12 100%)",
+        }}
+        aria-hidden="true"
       />
 
       {/* ── Dark overlay layers ────────────────────────────────────── */}
@@ -60,19 +58,16 @@ export default function Hero() {
       {/* ── Content ─────────────────────────────────────────────────── */}
       <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
 
-        {/* Real logo */}
+        {/* Logo text fallback */}
         <div
           className="flex justify-center mb-8 animate-fade-in"
           style={{ animationDelay: "0s" }}
         >
-          <Image
-            src="/logo-kloeg.webp"
-            alt="Café De Kloeg logo"
-            width={260}
-            height={320}
-            className="object-contain drop-shadow-2xl"
-            priority
-          />
+          <div className="text-center">
+            <p className="text-brand-gold text-sm tracking-[0.3em] uppercase mb-2">Eetcafé</p>
+            <h2 className="font-display text-6xl md:text-8xl font-black text-brand-chalk">DE KLOEG</h2>
+            <p className="text-brand-parchment/60 text-sm tracking-[0.2em] uppercase mt-2">Kralingen · Rotterdam</p>
+          </div>
         </div>
 
         {/* Gold shimmer rule */}

@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════════════
+   CSS CUSTOM PROPERTIES — De Kloeg design tokens
+═══════════════════════════════════════════════════════ */
+:root {
+  --cream:          #F2E8D5;
+  --cream-mid:      #EAD9BC;
+  --oak:            #2A1E12;
+  --oak-mid:        #4A3320;
+  --bordeaux:       #6B1A2A;
+  --bordeaux-mid:   #8B2535;
+  --terracotta:     #A8401E;
+  --terracotta-glow:#D97148;
+  --gold:           #C4902E;
+  --gold-bright:    #E8B84B;
+  --copper:         #B5622A;
+  --chalk:          #F8F3E8;
+  --parchment:      #C9B48A;
+
+  /* Noise texture as a CSS variable (reused across sections) */
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+}
+
+/* ═══════════════════════════════════════════════════════
+   BASE STYLES
+═══════════════════════════════════════════════════════ */
+@layer base {
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply font-body antialiased;
+    background-color: var(--cream);
+    /* Layered grain on parchment */
+    background-image: var(--noise);
+    color: var(--oak);
+  }
+
+  ::selection {
+    background: var(--bordeaux);
+    color: var(--chalk);
+  }
+
+  h1, h2, h3, h4, h5, h6 { @apply font-display; }
+
+  /* Smooth focus rings — warm colour */
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   COMPONENT LAYER
+═══════════════════════════════════════════════════════ */
+@layer components {
+  /* ── Label/eyebrow caps ─────────────────────────────── */
+  .label-caps {
+    @apply font-sans text-xs tracking-[0.22em] uppercase font-medium;
+  }
+
+  /* ── Ornamental divider ─────────────────────────────── */
+  .ornament-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--parchment);
+  }
+  .ornament-divider::before,
+  .ornament-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, currentColor, transparent);
+    opacity: 0.4;
+  }
+
+  /* ── Gold shimmer bar ───────────────────────────────── */
+  .shimmer-bar {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      var(--gold) 30%,
+      var(--gold-bright) 50%,
+      var(--gold) 70%,
+      transparent 100%
+    );
+    opacity: 0.5;
+    animation: shimmerBar 3s ease-in-out infinite;
+  }
+  @keyframes shimmerBar {
+    0%, 100% { opacity: 0.3; transform: scaleX(0.7); }
+    50%       { opacity: 0.7; transform: scaleX(1); }
+  }
+
+  /* ── Warm card ──────────────────────────────────────── */
+  .card-warm {
+    background: linear-gradient(135deg, var(--cream) 0%, var(--cream-mid) 100%);
+    background-image: var(--noise), linear-gradient(135deg, var(--cream) 0%, var(--cream-mid) 100%);
+    border: 1px solid rgba(196, 144, 46, 0.15);
+    box-shadow: 0 2px 8px rgba(106,26,42,0.08), 0 1px 3px rgba(42,30,18,0.06);
+  }
+
+  /* ── Dark card (oak) ────────────────────────────────── */
+  .card-dark {
+    background: linear-gradient(145deg, #3A2818 0%, #2A1E12 60%, #221508 100%);
+    background-image: var(--noise), linear-gradient(145deg, #3A2818 0%, #2A1E12 60%, #221508 100%);
+    border: 1px solid rgba(196, 144, 46, 0.12);
+  }
+
+  /* ── Ink underline ──────────────────────────────────── */
+  .ink-underline {
+    text-decoration: underline;
+    text-decoration-color: var(--gold);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
+  }
+
+  /* ── Stamp badge ─────────────────────────────────────── */
+  .stamp {
+    @apply label-caps;
+    border: 1.5px solid currentColor;
+    border-radius: 2px;
+    padding: 2px 8px;
+    opacity: 0.75;
+    transform: rotate(-1deg);
+    display: inline-block;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   UTILITY LAYER
+═══════════════════════════════════════════════════════ */
+@layer utilities {
+  /* Scroll-triggered reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1),
+                transform 0.75s cubic-bezier(0.16,1,0.3,1);
+  }
+  .reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.08s; }
+  .reveal-delay-2 { transition-delay: 0.18s; }
+  .reveal-delay-3 { transition-delay: 0.28s; }
+  .reveal-delay-4 { transition-delay: 0.38s; }
+
+  /* ── Diagonal section cut ───────────────────────────── */
+  .clip-diagonal-bottom {
+    clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+  }
+  .clip-diagonal-top {
+    clip-path: polygon(0 8%, 100% 0, 100% 100%, 0 100%);
+  }
+
+  /* ── Starburst / vintage label ──────────────────────── */
+  .vintage-badge::before {
+    content: '✦';
+    margin-right: 0.4em;
+    color: var(--gold);
+    font-size: 0.6em;
+  }
+  .vintage-badge::after {
+    content: '✦';
+    margin-left: 0.4em;
+    color: var(--gold);
+    font-size: 0.6em;
+  }
+
+  /* ── Gradient text (gold shimmer) ───────────────────── */
+  .text-gold-gradient {
+    background: linear-gradient(135deg, var(--gold-muted, #9B6E20) 0%, var(--gold-bright) 50%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Warm highlight on hover ────────────────────────── */
+  .hover-warm {
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .hover-warm:hover {
+    background-color: rgba(196, 144, 46, 0.06);
+    box-shadow: 0 0 0 1px rgba(196, 144, 46, 0.2);
+    transform: translateY(-2px);
+  }
+
+  /* Dark section grain overlay */
+  .dark-grain {
+    background-image: var(--noise);
+  }
+}
+
+/* ═══════════════════════════════════════════════════════
+   SECTION BACKGROUND TEXTURES
+═══════════════════════════════════════════════════════ */
+
+/* About section: layered diagonal warm gradient */
+.section-about {
+  background-color: var(--cream);
+  background-image:
+    var(--noise),
+    linear-gradient(160deg, transparent 55%, rgba(196,144,46,0.06) 100%);
+}
+
+/* Dark sections (Hero, Menu, Footer): deep tobacco with warm gradient */
+.section-dark {
+  background-color: var(--oak);
+  background-image:
+    var(--noise),
+    radial-gradient(ellipse at 30% 60%, rgba(106,26,42,0.35) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(168,64,30,0.15) 0%, transparent 50%);
+}
+
+/* Testimonials: warm cream-to-mid with copper tint */
+.section-testimonials {
+  background-color: var(--cream-mid);
+  background-image:
+    var(--noise),
+    linear-gradient(170deg, var(--cream) 0%, var(--cream-mid) 50%, rgba(181,98,42,0.08) 100%);
+}
+
+/* Contact: dark with bordeaux glow from below */
+.section-contact {
+  background-color: var(--oak);
+  background-image:
+    var(--noise),
+    radial-gradient(ellipse at 50% 100%, rgba(107,26,42,0.4) 0%, transparent 60%),
+    radial-gradient(ellipse at 10% 30%, rgba(168,64,30,0.12) 0%, transparent 50%);
+}

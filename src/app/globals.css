@@ -9,6 +9,7 @@
   --cream-mid: #EAD9BC;
   --oak: #2A1E12;
   --oak-mid: #4A3320;
+  --oak-light: #5D4530;
   --bordeaux: #6B1A2A;
   --bordeaux-mid: #8B2535;
   --terracotta: #A8401E;
@@ -144,10 +145,10 @@
 }
 
 .section-dark {
-  background-color: var(--oak);
+  background-color: var(--oak-mid);
   background-image: var(--noise),
-    radial-gradient(ellipse at 30% 60%, rgba(106, 26, 42, 0.35) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 20%, rgba(168, 64, 30, 0.15) 0%, transparent 50%);
+    radial-gradient(ellipse at 30% 60%, rgba(106, 26, 42, 0.2) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(168, 64, 30, 0.1) 0%, transparent 50%);
 }
 
 .section-testimonials {
@@ -156,8 +157,8 @@
 }
 
 .section-contact {
-  background-color: var(--oak);
+  background-color: var(--oak-mid);
   background-image: var(--noise),
-    radial-gradient(ellipse at 50% 100%, rgba(107, 26, 42, 0.4) 0%, transparent 60%),
-    radial-gradient(ellipse at 10% 30%, rgba(168, 64, 30, 0.12) 0%, transparent 50%);
+    radial-gradient(ellipse at 50% 100%, rgba(107, 26, 42, 0.25) 0%, transparent 60%),
+    radial-gradient(ellipse at 10% 30%, rgba(168, 64, 30, 0.08) 0%, transparent 50%);
 }

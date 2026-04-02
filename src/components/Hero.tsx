@@ -69,7 +69,6 @@ export default function Hero() {
         {/* Logo text */}
         <div className="flex justify-center mb-8 animate-fade-in">
           <div className="text-center">
-            <p className="text-brand-gold text-sm tracking-[0.3em] uppercase mb-2">Eetcafé</p>
             <h2 className="font-display text-6xl md:text-8xl font-black text-brand-chalk">DE KLOEG</h2>
             <p className="text-brand-parchment/60 text-sm tracking-[0.2em] uppercase mt-2">Kralingen · Rotterdam</p>
           </div>

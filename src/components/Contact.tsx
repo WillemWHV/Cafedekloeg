@@ -315,7 +315,6 @@ export default function Contact() {
                   </button>
 
                   <p className="label-caps text-[10px] text-center" style={{ color: "rgba(201,180,138,0.3)" }}>
-                    We antwoorden binnen een werkdag.
                   </p>
                 </form>
               )}

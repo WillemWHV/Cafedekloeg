@@ -30,8 +30,9 @@ const config: Config = {
       },
       fontFamily: {
         display: ["Playfair Display", "Georgia", "serif"],
-        body: ["Lora", "Georgia", "serif"],
-        sans: ["DM Sans", "Helvetica Neue", "sans-serif"],
+        body: ["Crimson Text", "Georgia", "serif"],
+        sans: ["Cinzel", "Georgia", "serif"],
+        bebas: ["Bebas Neue", "Arial", "sans-serif"],
       },
       boxShadow: {
         "warm-lg": "0 8px 40px rgba(106,26,42,0.22), 0 4px 16px rgba(42,30,18,0.15)",

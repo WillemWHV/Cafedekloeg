@@ -18,90 +18,97 @@ export default function Hero() {
         className="object-cover"
       />
 
-      {/* Background gradient */}
+      {/* Lighter background gradient */}
       <div
         className="absolute inset-0"
         style={{
-          background: "linear-gradient(135deg, rgba(42,30,18,0.82) 0%, rgba(74,51,32,0.58) 50%, rgba(42,30,18,0.82) 100%)",
+          background: "linear-gradient(135deg, rgba(42,30,18,0.55) 0%, rgba(74,51,32,0.35) 50%, rgba(42,30,18,0.55) 100%)",
         }}
         aria-hidden="true"
       />
 
-      {/* Dark overlay */}
+      {/* Lighter overlay */}
       <div
         className="absolute inset-0"
-        style={{ background: "rgba(20, 12, 6, 0.5)" }}
+        style={{ background: "rgba(20, 12, 6, 0.25)" }}
         aria-hidden="true"
       />
 
-      {/* Warm color grading */}
+      {/* Subtle warm color grading */}
       <div
         className="absolute inset-0"
         style={{
           background: `
-            radial-gradient(ellipse 80% 50% at 10% 90%, rgba(107,26,42,0.55) 0%, transparent 60%),
-            radial-gradient(ellipse 60% 40% at 90% 10%, rgba(168,64,30,0.3) 0%, transparent 55%)
+            radial-gradient(ellipse 80% 50% at 10% 90%, rgba(107,26,42,0.25) 0%, transparent 60%),
+            radial-gradient(ellipse 60% 40% at 90% 10%, rgba(168,64,30,0.15) 0%, transparent 55%)
           `,
         }}
         aria-hidden="true"
       />
 
-      {/* Vignette */}
+      {/* Softer vignette */}
       <div
         className="absolute inset-0"
         style={{
-          background: "radial-gradient(ellipse 90% 90% at 50% 50%, transparent 30%, rgba(12,7,3,0.6) 100%)",
-        }}
-        aria-hidden="true"
-      />
-
-      {/* Top accent stripe */}
-      <div
-        className="absolute top-0 left-0 right-0 h-[3px]"
-        style={{
-          background: "linear-gradient(90deg, transparent 0%, #6B1A2A 15%, #C4902E 50%, #6B1A2A 85%, transparent 100%)",
+          background: "radial-gradient(ellipse 100% 100% at 50% 50%, transparent 40%, rgba(12,7,3,0.35) 100%)",
         }}
         aria-hidden="true"
       />
 
       {/* Content */}
       <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-        {/* Logo text */}
-        <div className="flex justify-center mb-8 animate-fade-in">
-          <div className="text-center">
-            <p className="text-brand-gold text-sm tracking-[0.3em] uppercase mb-2">Eetcafé</p>
-            <h2 className="font-display text-6xl md:text-8xl font-black text-brand-chalk">DE KLOEG</h2>
-            <p className="text-brand-parchment/60 text-sm tracking-[0.2em] uppercase mt-2">Kralingen · Rotterdam</p>
+        {/* Logo container with decorative frame */}
+        <div className="flex justify-center mb-10 animate-fade-in">
+          <div className="relative">
+            {/* Decorative corner accents */}
+            <div className="absolute -top-4 -left-6 w-8 h-8 border-t-2 border-l-2 border-brand-gold/40" aria-hidden="true" />
+            <div className="absolute -top-4 -right-6 w-8 h-8 border-t-2 border-r-2 border-brand-gold/40" aria-hidden="true" />
+            <div className="absolute -bottom-4 -left-6 w-8 h-8 border-b-2 border-l-2 border-brand-gold/40" aria-hidden="true" />
+            <div className="absolute -bottom-4 -right-6 w-8 h-8 border-b-2 border-r-2 border-brand-gold/40" aria-hidden="true" />
+            
+            {/* Logo content */}
+            <div className="text-center px-8 py-4">
+              {/* "anno 2025" - Playfair Display regular */}
+              <p 
+                className="font-display text-brand-gold/70 text-[11px] tracking-[0.2em] mb-1"
+              >
+                anno 2025
+              </p>
+              {/* "De Kloeg" - Playfair Display Italic */}
+              <h2 
+                className="font-display italic text-5xl md:text-7xl font-medium tracking-wide"
+                style={{
+                  color: "#F8F3E8",
+                  textShadow: "0 2px 20px rgba(196,144,46,0.2)",
+                }}
+              >
+                De Kloeg
+              </h2>
+              {/* "ROTTERDAM / KRALINGEN" - Cinzel */}
+              <div className="flex items-center justify-center gap-3 mt-2">
+                <span className="w-8 h-px bg-brand-gold/40" aria-hidden="true" />
+                <p className="font-sans text-brand-parchment/70 text-[10px] tracking-[0.3em] uppercase font-medium">
+                  Rotterdam / Kralingen
+                </p>
+                <span className="w-8 h-px bg-brand-gold/40" aria-hidden="true" />
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Shimmer bar */}
-        <div className="shimmer-bar max-w-[200px] mx-auto mb-7" aria-hidden="true" />
-
-        {/* Eyebrow */}
-        <p
-          className="label-caps text-brand-gold mb-5 vintage-badge animate-fade-in"
-          style={{ animationDelay: "0.2s" }}
-        >
-          Eetcafé · Kralingen · Rotterdam
-        </p>
-
         {/* Headline */}
         <h1
-          className="font-display font-black leading-[1.06] text-brand-chalk animate-fade-up mb-5"
+          className="font-display font-medium leading-[1.1] text-brand-chalk animate-fade-up mb-5"
           style={{
-            fontSize: "clamp(2.2rem, 7vw, 4.8rem)",
+            fontSize: "clamp(2rem, 6vw, 4rem)",
             animationDelay: "0.3s",
           }}
         >
           Een kroeg{" "}
           <em
-            className="not-italic"
+            className="italic"
             style={{
-              background: "linear-gradient(135deg, #C55B38 0%, #E8B84B 45%, #C4902E 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
+              color: "#E8B84B",
             }}
           >
             zonder poespas.
@@ -110,7 +117,7 @@ export default function Hero() {
 
         {/* Subtitle */}
         <p
-          className="font-body text-lg md:text-xl text-brand-parchment/85 max-w-lg mx-auto leading-relaxed mb-10 animate-fade-up"
+          className="font-body text-lg md:text-xl text-brand-chalk/80 max-w-lg mx-auto leading-relaxed mb-10 animate-fade-up"
           style={{ animationDelay: "0.44s" }}
         >
           Verse dagschotels, lokale bieren en een goed glas wijn.
@@ -124,23 +131,23 @@ export default function Hero() {
         >
           <a
             href="#contact"
-            className="group relative inline-block overflow-hidden rounded-sm font-sans font-semibold text-sm tracking-widest uppercase px-9 py-4 text-brand-chalk shadow-warm-lg transition-transform duration-300 hover:-translate-y-0.5"
+            className="group relative inline-block overflow-hidden rounded font-sans font-medium text-sm tracking-widest uppercase px-8 py-3.5 text-brand-chalk transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
             style={{
-              background: "linear-gradient(135deg, #6B1A2A 0%, #A8401E 100%)",
+              background: "linear-gradient(135deg, #8B2535 0%, #A8401E 100%)",
             }}
           >
             <span className="relative z-10">Reserveer een tafel</span>
             <span
               className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               style={{
-                background: "linear-gradient(135deg, #8B2535 0%, #C55B38 100%)",
+                background: "linear-gradient(135deg, #9B3040 0%, #C55B38 100%)",
               }}
               aria-hidden="true"
             />
           </a>
           <a
             href="#menu"
-            className="inline-block border border-brand-parchment/35 text-brand-parchment rounded-sm font-sans font-semibold text-sm tracking-widest uppercase px-9 py-4 hover:border-brand-gold hover:text-brand-gold transition-all duration-300 backdrop-blur-sm"
+            className="inline-block border border-brand-chalk/40 text-brand-chalk rounded font-sans font-medium text-sm tracking-widest uppercase px-8 py-3.5 hover:border-brand-gold hover:text-brand-gold transition-all duration-300 backdrop-blur-sm"
           >
             Bekijk de kaart
           </a>
@@ -148,7 +155,7 @@ export default function Hero() {
 
         {/* Hours strip */}
         <div
-          className="mt-12 flex flex-wrap justify-center gap-x-7 gap-y-1.5 animate-fade-in"
+          className="mt-14 flex flex-wrap justify-center gap-x-8 gap-y-2 animate-fade-in"
           style={{ animationDelay: "0.8s" }}
         >
           {[
@@ -156,8 +163,8 @@ export default function Hero() {
             ["Vr–Za", "16–00u"],
             ["Zo", "15–21u"],
           ].map(([day, time]) => (
-            <span key={day} className="label-caps text-brand-parchment/35 text-[10px]">
-              {day} <span className="text-brand-gold/55">{time}</span>
+            <span key={day} className="label-caps text-brand-chalk/50 text-[10px]">
+              {day} <span className="text-brand-gold/70">{time}</span>
             </span>
           ))}
         </div>
@@ -171,7 +178,7 @@ export default function Hero() {
         <div
           className="w-px h-10 animate-pulse-slow"
           style={{
-            background: "linear-gradient(to bottom, transparent, rgba(196,144,46,0.5))",
+            background: "linear-gradient(to bottom, transparent, rgba(196,144,46,0.4))",
           }}
         />
         <svg
@@ -180,20 +187,11 @@ export default function Hero() {
           stroke="#C4902E"
           strokeWidth={1.5}
           viewBox="0 0 24 24"
-          style={{ opacity: 0.5 }}
+          style={{ opacity: 0.4 }}
         >
           <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
         </svg>
       </div>
-
-      {/* Bottom rule */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-px"
-        style={{
-          background: "linear-gradient(90deg, transparent, rgba(139,37,53,0.5), transparent)",
-        }}
-        aria-hidden="true"
-      />
     </section>
   );
 }

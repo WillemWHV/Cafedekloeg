@@ -68,9 +68,15 @@ export default function Hero() {
             
             {/* Logo content */}
             <div className="text-center px-8 py-4">
-              <p className="label-caps text-brand-gold/70 text-[11px] tracking-[0.35em] mb-1">Eetcafé</p>
+              {/* "anno 2025" - Playfair Display regular */}
+              <p 
+                className="font-display text-brand-gold/70 text-[11px] tracking-[0.2em] mb-1"
+              >
+                anno 2025
+              </p>
+              {/* "De Kloeg" - Playfair Display Italic */}
               <h2 
-                className="font-display text-5xl md:text-7xl font-semibold tracking-wide"
+                className="font-display italic text-5xl md:text-7xl font-medium tracking-wide"
                 style={{
                   color: "#F8F3E8",
                   textShadow: "0 2px 20px rgba(196,144,46,0.2)",
@@ -78,9 +84,12 @@ export default function Hero() {
               >
                 De Kloeg
               </h2>
+              {/* "ROTTERDAM / KRALINGEN" - Cinzel */}
               <div className="flex items-center justify-center gap-3 mt-2">
                 <span className="w-8 h-px bg-brand-gold/40" aria-hidden="true" />
-                <p className="text-brand-parchment/70 text-xs tracking-[0.25em] uppercase">Kralingen</p>
+                <p className="font-sans text-brand-parchment/70 text-[10px] tracking-[0.3em] uppercase font-medium">
+                  Rotterdam / Kralingen
+                </p>
                 <span className="w-8 h-px bg-brand-gold/40" aria-hidden="true" />
               </div>
             </div>

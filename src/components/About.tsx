@@ -120,14 +120,14 @@ export default function About() {
                 — Jules Deelder
               </p>
 
-              {/* Poem */}
-              <blockquote className="font-display font-black uppercase leading-snug text-2xl md:text-3xl space-y-0.5">
+              {/* Poem - Bebas Neue for Deelder text */}
+              <blockquote className="font-bebas uppercase leading-snug text-3xl md:text-4xl space-y-0.5 tracking-wide">
                 <p style={{ color: "#F8F3E8" }}>Kanen knagen,</p>
                 <p style={{ color: "#F8F3E8" }}>hooien grazen,</p>
                 <p style={{ color: "#C9B48A" }}>schaften makken.</p>
                 <p className="mt-3" style={{ color: "#E8B84B" }}>Rotterdammers,</p>
                 <p style={{ color: "#F8F3E8" }}>doen het gaarne</p>
-                <p className="font-normal italic text-xl mt-1" style={{ color: "rgba(201,180,138,0.6)" }}>
+                <p className="font-display italic text-xl mt-1" style={{ color: "rgba(201,180,138,0.6)" }}>
                   zolang het maar,
                 </p>
                 <p style={{ color: "#D97148" }}>géén tafelen wordt.</p>

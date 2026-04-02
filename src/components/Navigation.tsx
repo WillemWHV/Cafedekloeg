@@ -4,14 +4,14 @@ import { useState, useEffect } from "react";
 
 const links = [
   { href: "#over-ons", label: "Over ons" },
-  { href: "#menu",     label: "De kaart" },
-  { href: "#reviews",  label: "Wat ze zeggen" },
-  { href: "#contact",  label: "Contact" },
+  { href: "#menu", label: "De kaart" },
+  { href: "#reviews", label: "Reviews" },
+  { href: "#contact", label: "Contact" },
 ];
 
 export default function Navigation() {
-  const [scrolled,   setScrolled]   = useState(false);
-  const [menuOpen,   setMenuOpen]   = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [activeHash, setActiveHash] = useState("");
 
   useEffect(() => {
@@ -23,14 +23,20 @@ export default function Navigation() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((e) => { if (e.isIntersecting) setActiveHash("#" + e.target.id); });
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            setActiveHash("#" + e.target.id);
+          }
+        });
       },
       { rootMargin: "-40% 0px -55% 0px" }
     );
+
     links.forEach(({ href }) => {
       const el = document.querySelector(href);
       if (el) observer.observe(el);
     });
+
     return () => observer.disconnect();
   }, []);
 
@@ -41,12 +47,17 @@ export default function Navigation() {
     }, 100);
   };
 
+  const scrollToTop = (e: React.MouseEvent) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <header
       role="banner"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-brand-oak/96 backdrop-blur-sm shadow-xl shadow-black/30 border-b border-brand-gold/10"
+          ? "bg-brand-oak/95 backdrop-blur-sm shadow-xl shadow-black/30 border-b border-brand-gold/10"
           : "bg-gradient-to-b from-brand-oak/60 to-transparent"
       }`}
     >
@@ -59,10 +70,9 @@ export default function Navigation() {
       )}
 
       <nav className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between" aria-label="Hoofdnavigatie">
-        {/* Text logo fallback */}
         <a
           href="#"
-          onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+          onClick={scrollToTop}
           aria-label="Café De Kloeg — naar boven"
           className="hover:opacity-80 transition-opacity flex-shrink-0"
         >
@@ -111,10 +121,11 @@ export default function Navigation() {
           aria-label={menuOpen ? "Menu sluiten" : "Menu openen"}
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24" aria-hidden="true">
-            {menuOpen
-              ? <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              : <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
-            }
+            {menuOpen ? (
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
+            )}
           </svg>
         </button>
       </nav>

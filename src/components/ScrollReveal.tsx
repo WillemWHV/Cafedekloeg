@@ -2,8 +2,6 @@
 
 import { useEffect } from "react";
 
-// Observes all elements with class "reveal" and adds "in-view" when visible.
-// CSS in globals.css handles the actual animation transition.
 export default function ScrollReveal() {
   useEffect(() => {
     const elements = document.querySelectorAll<HTMLElement>(".reveal");
@@ -13,7 +11,6 @@ export default function ScrollReveal() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("in-view");
-            // Unobserve after first reveal — animation plays once
             observer.unobserve(entry.target);
           }
         });
@@ -29,5 +26,5 @@ export default function ScrollReveal() {
     return () => observer.disconnect();
   }, []);
 
-  return null; // Purely behavioral — renders nothing
+  return null;
 }

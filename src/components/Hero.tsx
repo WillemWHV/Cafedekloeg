@@ -1,14 +1,12 @@
 "use client";
 
-// Hero section - works without images by using CSS gradients as fallback
-
 export default function Hero() {
   return (
     <section
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       aria-label="Welkom bij Café De Kloeg"
     >
-      {/* ── Background gradient (fallback when no image) ─────────────────────────── */}
+      {/* Background gradient */}
       <div
         className="absolute inset-0"
         style={{
@@ -17,14 +15,14 @@ export default function Hero() {
         aria-hidden="true"
       />
 
-      {/* ── Dark overlay layers ────────────────────────────────────── */}
-      {/* Base darkening so text stays readable */}
+      {/* Dark overlay */}
       <div
         className="absolute inset-0"
-        style={{ background: "rgba(20, 12, 6, 0.62)" }}
+        style={{ background: "rgba(20, 12, 6, 0.5)" }}
         aria-hidden="true"
       />
-      {/* Warm colour grading — bordeaux from bottom, terracotta top-right */}
+
+      {/* Warm color grading */}
       <div
         className="absolute inset-0"
         style={{
@@ -35,12 +33,12 @@ export default function Hero() {
         }}
         aria-hidden="true"
       />
-      {/* Vignette to pull eyes centre */}
+
+      {/* Vignette */}
       <div
         className="absolute inset-0"
         style={{
-          background:
-            "radial-gradient(ellipse 90% 90% at 50% 50%, transparent 30%, rgba(12,7,3,0.6) 100%)",
+          background: "radial-gradient(ellipse 90% 90% at 50% 50%, transparent 30%, rgba(12,7,3,0.6) 100%)",
         }}
         aria-hidden="true"
       />
@@ -49,20 +47,15 @@ export default function Hero() {
       <div
         className="absolute top-0 left-0 right-0 h-[3px]"
         style={{
-          background:
-            "linear-gradient(90deg, transparent 0%, #6B1A2A 15%, #C4902E 50%, #6B1A2A 85%, transparent 100%)",
+          background: "linear-gradient(90deg, transparent 0%, #6B1A2A 15%, #C4902E 50%, #6B1A2A 85%, transparent 100%)",
         }}
         aria-hidden="true"
       />
 
-      {/* ── Content ─────────────────────────────────────────────────── */}
+      {/* Content */}
       <div className="relative z-10 max-w-3xl mx-auto px-6 text-center">
-
-        {/* Logo text fallback */}
-        <div
-          className="flex justify-center mb-8 animate-fade-in"
-          style={{ animationDelay: "0s" }}
-        >
+        {/* Logo text */}
+        <div className="flex justify-center mb-8 animate-fade-in">
           <div className="text-center">
             <p className="text-brand-gold text-sm tracking-[0.3em] uppercase mb-2">Eetcafé</p>
             <h2 className="font-display text-6xl md:text-8xl font-black text-brand-chalk">DE KLOEG</h2>
@@ -70,7 +63,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Gold shimmer rule */}
+        {/* Shimmer bar */}
         <div className="shimmer-bar max-w-[200px] mx-auto mb-7" aria-hidden="true" />
 
         {/* Eyebrow */}
@@ -93,8 +86,7 @@ export default function Hero() {
           <em
             className="not-italic"
             style={{
-              background:
-                "linear-gradient(135deg, #C55B38 0%, #E8B84B 45%, #C4902E 100%)",
+              background: "linear-gradient(135deg, #C55B38 0%, #E8B84B 45%, #C4902E 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -104,7 +96,7 @@ export default function Hero() {
           </em>
         </h1>
 
-        {/* Sub */}
+        {/* Subtitle */}
         <p
           className="font-body text-lg md:text-xl text-brand-parchment/85 max-w-lg mx-auto leading-relaxed mb-10 animate-fade-up"
           style={{ animationDelay: "0.44s" }}
@@ -129,8 +121,7 @@ export default function Hero() {
             <span
               className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               style={{
-                background:
-                  "linear-gradient(135deg, #8B2535 0%, #C55B38 100%)",
+                background: "linear-gradient(135deg, #8B2535 0%, #C55B38 100%)",
               }}
               aria-hidden="true"
             />
@@ -152,15 +143,15 @@ export default function Hero() {
             ["Wo–Do", "16–23u"],
             ["Vr–Za", "16–00u"],
             ["Zo", "15–21u"],
-          ].map(([d, t]) => (
-            <span key={d} className="label-caps text-brand-parchment/35 text-[10px]">
-              {d} <span className="text-brand-gold/55">{t}</span>
+          ].map(([day, time]) => (
+            <span key={day} className="label-caps text-brand-parchment/35 text-[10px]">
+              {day} <span className="text-brand-gold/55">{time}</span>
             </span>
           ))}
         </div>
       </div>
 
-      {/* Scroll cue */}
+      {/* Scroll indicator */}
       <div
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         aria-hidden="true"
@@ -168,8 +159,7 @@ export default function Hero() {
         <div
           className="w-px h-10 animate-pulse-slow"
           style={{
-            background:
-              "linear-gradient(to bottom, transparent, rgba(196,144,46,0.5))",
+            background: "linear-gradient(to bottom, transparent, rgba(196,144,46,0.5))",
           }}
         />
         <svg
@@ -180,11 +170,7 @@ export default function Hero() {
           viewBox="0 0 24 24"
           style={{ opacity: 0.5 }}
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-          />
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
         </svg>
       </div>
 
@@ -192,8 +178,7 @@ export default function Hero() {
       <div
         className="absolute bottom-0 left-0 right-0 h-px"
         style={{
-          background:
-            "linear-gradient(90deg, transparent, rgba(139,37,53,0.5), transparent)",
+          background: "linear-gradient(90deg, transparent, rgba(139,37,53,0.5), transparent)",
         }}
         aria-hidden="true"
       />

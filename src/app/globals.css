@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Libre+Franklin:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -27,7 +27,7 @@
   }
 
   body {
-    font-family: 'Lora', Georgia, serif;
+    font-family: 'Crimson Text', Georgia, serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: var(--cream);
@@ -41,7 +41,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Cormorant Garamond', Georgia, serif;
   }
 
   :focus-visible {
@@ -53,7 +53,7 @@
 
 @layer components {
   .label-caps {
-    font-family: 'DM Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Libre Franklin', 'Helvetica Neue', sans-serif;
     font-size: 0.75rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;

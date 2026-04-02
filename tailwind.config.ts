@@ -29,9 +29,9 @@ const config: Config = {
         },
       },
       fontFamily: {
-        display: ["Playfair Display", "Georgia", "serif"],
-        body: ["Lora", "Georgia", "serif"],
-        sans: ["DM Sans", "Helvetica Neue", "sans-serif"],
+        display: ["Cormorant Garamond", "Georgia", "serif"],
+        body: ["Crimson Text", "Georgia", "serif"],
+        sans: ["Libre Franklin", "Helvetica Neue", "sans-serif"],
       },
       boxShadow: {
         "warm-lg": "0 8px 40px rgba(106,26,42,0.22), 0 4px 16px rgba(42,30,18,0.15)",

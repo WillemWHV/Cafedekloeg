@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const links = [
   { href: "#over-ons", label: "Over ons" },
@@ -74,8 +75,16 @@ export default function Navigation() {
           href="#"
           onClick={scrollToTop}
           aria-label="Café De Kloeg — naar boven"
-          className="hover:opacity-80 transition-opacity flex-shrink-0"
+          className="hover:opacity-80 transition-opacity flex-shrink-0 flex items-center gap-2.5"
         >
+          <Image
+            src="/logo-kloeg.png"
+            alt="Logo van Cafe De Kloeg"
+            width={36}
+            height={36}
+            className="w-9 h-9 rounded-sm object-cover"
+            priority
+          />
           <span className="font-display text-xl font-bold text-brand-chalk">DE KLOEG</span>
         </a>
 

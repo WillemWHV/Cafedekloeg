@@ -1,16 +1,28 @@
 "use client";
 
+import Image from "next/image";
+
 export default function Hero() {
   return (
     <section
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       aria-label="Welkom bij Café De Kloeg"
     >
+      {/* Landing image */}
+      <Image
+        src="/landing-exterior.png"
+        alt="Buitenkant van Cafe De Kloeg in Kralingen"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover"
+      />
+
       {/* Background gradient */}
       <div
         className="absolute inset-0"
         style={{
-          background: "linear-gradient(135deg, #2A1E12 0%, #4A3320 50%, #2A1E12 100%)",
+          background: "linear-gradient(135deg, rgba(42,30,18,0.82) 0%, rgba(74,51,32,0.58) 50%, rgba(42,30,18,0.82) 100%)",
         }}
         aria-hidden="true"
       />

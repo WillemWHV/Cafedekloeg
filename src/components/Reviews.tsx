@@ -1,12 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Review {
   author: string;
   rating: number;
   text: string;
   timeAgo: string;
+}
+
+interface GoogleReview {
+  author_name: string;
+  rating: number;
+  text: string;
+  relative_time_description?: string;
+}
+
+interface ReviewsApiResponse {
+  rating?: number;
+  reviews?: GoogleReview[];
 }
 
 const fallbackReviews: Review[] = [
@@ -134,6 +146,47 @@ function ReviewCard({ review, delay }: { review: Review; delay: number }) {
 }
 
 export default function Reviews() {
+  const [reviews, setReviews] = useState<Review[]>(fallbackReviews);
+  const [averageRating, setAverageRating] = useState<number>(5);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const loadReviews = async () => {
+      try {
+        const response = await fetch("/api/reviews", { cache: "no-store" });
+        if (!response.ok) return;
+
+        const data = (await response.json()) as ReviewsApiResponse;
+        if (!isMounted || !Array.isArray(data.reviews) || data.reviews.length === 0) return;
+
+        const mapped = data.reviews
+          .filter((review) => Boolean(review.author_name && review.text))
+          .map((review) => ({
+            author: review.author_name,
+            rating: Math.max(1, Math.min(5, Math.round(review.rating || 0))),
+            text: review.text,
+            timeAgo: review.relative_time_description || "recent",
+          }));
+
+        if (mapped.length > 0) {
+          setReviews(mapped);
+        }
+
+        if (typeof data.rating === "number") {
+          setAverageRating(Math.round(data.rating * 10) / 10);
+        }
+      } catch {
+        // Keep fallback reviews when API is unavailable.
+      }
+    };
+
+    loadReviews();
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   return (
     <section
       id="reviews"
@@ -163,9 +216,9 @@ export default function Reviews() {
 
           {/* Average rating */}
           <div className="flex items-center justify-center gap-3 mt-5">
-            <Stars rating={5} size="lg" />
+            <Stars rating={Math.round(averageRating)} size="lg" />
             <span className="font-display text-2xl font-bold" style={{ color: "#2A1E12" }}>
-              5.0
+              {averageRating.toFixed(1)}
             </span>
             <span className="font-body text-sm" style={{ color: "#7A5C40" }}>
               op basis van Google reviews
@@ -175,7 +228,7 @@ export default function Reviews() {
 
         {/* Reviews grid */}
         <div className="grid md:grid-cols-3 gap-6">
-          {fallbackReviews.map((review, i) => (
+          {reviews.map((review, i) => (
             <ReviewCard key={review.author} review={review} delay={i * 0.08} />
           ))}
         </div>

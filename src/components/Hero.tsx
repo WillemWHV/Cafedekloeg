@@ -22,15 +22,8 @@ export default function Hero() {
       <div
         className="absolute inset-0"
         style={{
-          background: "linear-gradient(135deg, rgba(42,30,18,0.82) 0%, rgba(74,51,32,0.58) 50%, rgba(42,30,18,0.82) 100%)",
+          background: "linear-gradient(135deg, rgba(58,42,26,0.65) 0%, rgba(90,69,48,0.4) 50%, rgba(58,42,26,0.65) 100%)",
         }}
-        aria-hidden="true"
-      />
-
-      {/* Dark overlay */}
-      <div
-        className="absolute inset-0"
-        style={{ background: "rgba(20, 12, 6, 0.5)" }}
         aria-hidden="true"
       />
 
@@ -39,8 +32,8 @@ export default function Hero() {
         className="absolute inset-0"
         style={{
           background: `
-            radial-gradient(ellipse 80% 50% at 10% 90%, rgba(107,26,42,0.55) 0%, transparent 60%),
-            radial-gradient(ellipse 60% 40% at 90% 10%, rgba(168,64,30,0.3) 0%, transparent 55%)
+            radial-gradient(ellipse 80% 50% at 10% 90%, rgba(123,37,53,0.35) 0%, transparent 60%),
+            radial-gradient(ellipse 60% 40% at 90% 10%, rgba(184,80,46,0.2) 0%, transparent 55%)
           `,
         }}
         aria-hidden="true"
@@ -50,7 +43,7 @@ export default function Hero() {
       <div
         className="absolute inset-0"
         style={{
-          background: "radial-gradient(ellipse 90% 90% at 50% 50%, transparent 30%, rgba(12,7,3,0.6) 100%)",
+          background: "radial-gradient(ellipse 95% 95% at 50% 50%, transparent 40%, rgba(30,20,10,0.45) 100%)",
         }}
         aria-hidden="true"
       />
@@ -156,8 +149,8 @@ export default function Hero() {
             ["Vr–Za", "16–00u"],
             ["Zo", "15–21u"],
           ].map(([day, time]) => (
-            <span key={day} className="label-caps text-brand-parchment/35 text-[10px]">
-              {day} <span className="text-brand-gold/55">{time}</span>
+            <span key={day} className="label-caps text-brand-parchment/60 text-[10px]">
+              {day} <span className="text-brand-gold/80">{time}</span>
             </span>
           ))}
         </div>

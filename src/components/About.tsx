@@ -1,8 +1,8 @@
 export default function About() {
   const stats = [
-    { num: "2×", label: "Weekhap\nper week", color: "#A8401E" },
-    { num: "100%", label: "Vers\nbereide schotels", color: "#C4902E" },
-    { num: "Rott.", label: "Lokale\nbieren", color: "#6B1A2A" },
+    { num: "2×", label: "Weekhap\nper week", color: "#B8502E" },
+    { num: "100%", label: "Vers\nbereide schotels", color: "#D4A03E" },
+    { num: "Rott.", label: "Lokale\nbieren", color: "#7B2535" },
   ];
 
   return (
@@ -31,29 +31,29 @@ export default function About() {
         <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Left: Story */}
           <div className="reveal">
-            <p className="label-caps mb-4" style={{ color: "#B5622A" }}>
+            <p className="label-caps mb-4" style={{ color: "#C5723A" }}>
               Over de Kloeg
             </p>
 
             <h2
               id="about-heading"
               className="font-display text-4xl md:text-5xl font-bold leading-tight mb-6"
-              style={{ color: "#2A1E12" }}
+              style={{ color: "#3A2A1A" }}
             >
               Vroeger De Wandeler,{" "}
-              <em className="italic" style={{ color: "#A8401E" }}>
+              <em className="italic" style={{ color: "#B8502E" }}>
                 nu De Kloeg.
               </em>
             </h2>
 
             {/* Decorative line */}
             <div className="flex items-center gap-3 mb-8" aria-hidden="true">
-              <div className="h-px w-12" style={{ background: "linear-gradient(90deg, #A8401E, #C4902E)" }} />
-              <div className="h-1.5 w-1.5 rounded-full" style={{ background: "#C4902E" }} />
-              <div className="h-px w-6" style={{ background: "rgba(196,144,46,0.4)" }} />
+              <div className="h-px w-12" style={{ background: "linear-gradient(90deg, #B8502E, #D4A03E)" }} />
+              <div className="h-1.5 w-1.5 rounded-full" style={{ background: "#D4A03E" }} />
+              <div className="h-px w-6" style={{ background: "rgba(212,160,62,0.5)" }} />
             </div>
 
-            <div className="space-y-5 font-body leading-relaxed text-[1.05rem]" style={{ color: "#4A3320" }}>
+            <div className="space-y-5 font-body leading-relaxed text-[1.05rem]" style={{ color: "#5A4530" }}>
               <p>
                 In het hart van Rotterdam Kralingen, op de Libanonweg, vind je De Kloeg.
                 Een kroeg waar eten en drinken draait om puur genieten zonder poespas —
@@ -66,7 +66,7 @@ export default function About() {
               </p>
               <p>
                 We laten ons inspireren door Jules Deelder. Want hier doe je het gewoon —{" "}
-                <em className="italic font-semibold" style={{ color: "#6B1A2A" }}>
+                <em className="italic font-semibold" style={{ color: "#7B2535" }}>
                   kanen, knagen, genieten.
                 </em>
               </p>
@@ -84,7 +84,7 @@ export default function About() {
                   </p>
                   <p
                     className="label-caps text-[10px] leading-snug whitespace-pre-line"
-                    style={{ color: "#7A5C40" }}
+                    style={{ color: "#8A6C50" }}
                   >
                     {label}
                   </p>

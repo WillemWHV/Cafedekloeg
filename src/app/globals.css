@@ -5,20 +5,20 @@
 @tailwind utilities;
 
 :root {
-  --cream: #F2E8D5;
-  --cream-mid: #EAD9BC;
-  --oak: #2A1E12;
-  --oak-mid: #4A3320;
-  --bordeaux: #6B1A2A;
-  --bordeaux-mid: #8B2535;
-  --terracotta: #A8401E;
-  --terracotta-glow: #D97148;
-  --gold: #C4902E;
-  --gold-bright: #E8B84B;
-  --copper: #B5622A;
-  --chalk: #F8F3E8;
-  --parchment: #C9B48A;
-  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+  --cream: #FAF6EE;
+  --cream-mid: #F5EDE0;
+  --oak: #3A2A1A;
+  --oak-mid: #5A4530;
+  --bordeaux: #7B2535;
+  --bordeaux-mid: #9B3545;
+  --terracotta: #B8502E;
+  --terracotta-glow: #E98158;
+  --gold: #D4A03E;
+  --gold-bright: #F8C85B;
+  --copper: #C5723A;
+  --chalk: #FFFDF8;
+  --parchment: #D9C49A;
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='256' height='256'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='256' height='256' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
 }
 
 @layer base {
@@ -70,13 +70,13 @@
       var(--gold) 70%,
       transparent 100%
     );
-    opacity: 0.5;
+    opacity: 0.6;
     animation: shimmerBar 3s ease-in-out infinite;
   }
 
   @keyframes shimmerBar {
-    0%, 100% { opacity: 0.3; transform: scaleX(0.7); }
-    50% { opacity: 0.7; transform: scaleX(1); }
+    0%, 100% { opacity: 0.4; transform: scaleX(0.7); }
+    50% { opacity: 0.85; transform: scaleX(1); }
   }
 
   .card-dark {
@@ -140,24 +140,24 @@
 
 .section-about {
   background-color: var(--cream);
-  background-image: var(--noise), linear-gradient(160deg, transparent 55%, rgba(196, 144, 46, 0.06) 100%);
+  background-image: var(--noise), linear-gradient(160deg, transparent 55%, rgba(212, 160, 62, 0.05) 100%);
 }
 
 .section-dark {
   background-color: var(--oak);
   background-image: var(--noise),
-    radial-gradient(ellipse at 30% 60%, rgba(106, 26, 42, 0.35) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 20%, rgba(168, 64, 30, 0.15) 0%, transparent 50%);
+    radial-gradient(ellipse at 30% 60%, rgba(123, 37, 53, 0.25) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(184, 80, 46, 0.12) 0%, transparent 50%);
 }
 
 .section-testimonials {
-  background-color: var(--cream-mid);
-  background-image: var(--noise), linear-gradient(170deg, var(--cream) 0%, var(--cream-mid) 50%, rgba(181, 98, 42, 0.08) 100%);
+  background-color: var(--cream);
+  background-image: var(--noise), linear-gradient(170deg, var(--chalk) 0%, var(--cream) 50%, rgba(197, 114, 58, 0.06) 100%);
 }
 
 .section-contact {
   background-color: var(--oak);
   background-image: var(--noise),
-    radial-gradient(ellipse at 50% 100%, rgba(107, 26, 42, 0.4) 0%, transparent 60%),
-    radial-gradient(ellipse at 10% 30%, rgba(168, 64, 30, 0.12) 0%, transparent 50%);
+    radial-gradient(ellipse at 50% 100%, rgba(123, 37, 53, 0.3) 0%, transparent 60%),
+    radial-gradient(ellipse at 10% 30%, rgba(184, 80, 46, 0.1) 0%, transparent 50%);
 }

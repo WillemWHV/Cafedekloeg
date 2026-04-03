@@ -52,19 +52,19 @@ function Field({
   placeholder?: string;
 }) {
   const baseStyles = {
-    background: "rgba(74,51,32,0.6)",
-    border: "1px solid rgba(196,144,46,0.15)",
-    color: "#F8F3E8",
-    caretColor: "#C4902E",
+    background: "rgba(90,69,48,0.5)",
+    border: "1px solid rgba(212,160,62,0.2)",
+    color: "#FFFDF8",
+    caretColor: "#D4A03E",
   };
 
   const handleFocus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    e.target.style.borderColor = "rgba(196,144,46,0.45)";
-    e.target.style.boxShadow = "0 0 0 3px rgba(196,144,46,0.08)";
+    e.target.style.borderColor = "rgba(212,160,62,0.5)";
+    e.target.style.boxShadow = "0 0 0 3px rgba(212,160,62,0.1)";
   };
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    e.target.style.borderColor = "rgba(196,144,46,0.15)";
+    e.target.style.borderColor = "rgba(212,160,62,0.2)";
     e.target.style.boxShadow = "none";
   };
 
@@ -73,9 +73,9 @@ function Field({
       <label
         htmlFor={id}
         className="label-caps text-[11px] block mb-2"
-        style={{ color: "rgba(201,180,138,0.6)" }}
+        style={{ color: "rgba(217,196,154,0.7)" }}
       >
-        {label} <span style={{ color: "#8B2535" }} aria-hidden="true">*</span>
+        {label} <span style={{ color: "#9B3545" }} aria-hidden="true">*</span>
       </label>
       {multiline ? (
         <textarea
@@ -159,7 +159,7 @@ export default function Contact() {
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16 reveal">
-          <p className="label-caps mb-4 vintage-badge" style={{ color: "#C4902E" }}>
+          <p className="label-caps mb-4 vintage-badge" style={{ color: "#D4A03E" }}>
             Reserveren of vragen?
           </p>
           <h2
@@ -169,7 +169,7 @@ export default function Contact() {
           >
             Kom gewoon langs.
             <br />
-            <span className="font-normal italic" style={{ fontSize: "0.72em", color: "rgba(201,180,138,0.55)" }}>
+            <span className="font-normal italic" style={{ fontSize: "0.72em", color: "rgba(217,196,154,0.65)" }}>
               Of stuur een berichtje.
             </span>
           </h2>
@@ -182,12 +182,12 @@ export default function Contact() {
               <div key={label} className="flex gap-4">
                 <div
                   className="flex-shrink-0 w-9 h-9 rounded-sm flex items-center justify-center"
-                  style={{ background: "rgba(107,26,42,0.45)", border: "1px solid rgba(196,144,46,0.15)" }}
+                  style={{ background: "rgba(123,37,53,0.4)", border: "1px solid rgba(212,160,62,0.2)" }}
                 >
                   <svg
                     className="w-4 h-4"
                     fill="none"
-                    stroke="#C4902E"
+                    stroke="#D4A03E"
                     strokeWidth={1.5}
                     viewBox="0 0 24 24"
                     aria-hidden="true"
@@ -196,12 +196,12 @@ export default function Contact() {
                   </svg>
                 </div>
                 <div>
-                  <p className="label-caps text-[11px] mb-1.5" style={{ color: "rgba(196,144,46,0.55)" }}>
+                  <p className="label-caps text-[11px] mb-1.5" style={{ color: "rgba(212,160,62,0.65)" }}>
                     {label}
                   </p>
                   <p
                     className="font-body text-sm leading-relaxed whitespace-pre-line"
-                    style={{ color: "rgba(201,180,138,0.78)" }}
+                    style={{ color: "rgba(217,196,154,0.88)" }}
                   >
                     {value}
                   </p>
@@ -210,8 +210,8 @@ export default function Contact() {
                       href={href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="label-caps text-[11px] mt-1.5 inline-block hover:underline transition-colors"
-                      style={{ color: "#D97148" }}
+                    className="label-caps text-[11px] mt-1.5 inline-block hover:underline transition-colors"
+                    style={{ color: "#E98158" }}
                       aria-label={`${linkLabel} (opent in nieuw tabblad)`}
                     >
                       {linkLabel} →
@@ -222,10 +222,10 @@ export default function Contact() {
             ))}
 
             {/* Tagline */}
-            <div className="pt-4 border-t" style={{ borderColor: "rgba(196,144,46,0.1)" }}>
+            <div className="pt-4 border-t" style={{ borderColor: "rgba(212,160,62,0.15)" }}>
               <p
                 className="font-body italic text-xs leading-relaxed"
-                style={{ color: "rgba(201,180,138,0.35)" }}
+                style={{ color: "rgba(217,196,154,0.5)" }}
               >
                 Reserveren mag, maar spontaan binnenlopen is nog beter.
                 Want bij De Kloeg draait het om het moment.
@@ -240,7 +240,7 @@ export default function Contact() {
                 <div className="text-center py-8" role="status" aria-live="polite">
                   <div
                     className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5"
-                    style={{ background: "linear-gradient(135deg, #6B1A2A, #A8401E)" }}
+                    style={{ background: "linear-gradient(135deg, #7B2535, #B8502E)" }}
                   >
                     <svg
                       className="w-7 h-7 text-brand-chalk"
@@ -254,7 +254,7 @@ export default function Contact() {
                     </svg>
                   </div>
                   <h3 className="font-display text-xl font-bold text-brand-chalk mb-2">Verstuurd!</h3>
-                  <p className="font-body text-sm" style={{ color: "rgba(201,180,138,0.7)" }}>
+                  <p className="font-body text-sm" style={{ color: "rgba(217,196,154,0.8)" }}>
                     {serverMsg}
                   </p>
                   <button
@@ -263,7 +263,7 @@ export default function Contact() {
                       setServerMsg("");
                     }}
                     className="mt-6 label-caps text-[11px] hover:underline"
-                    style={{ color: "#D97148" }}
+                    style={{ color: "#E98158" }}
                   >
                     Nog een bericht sturen
                   </button>
@@ -297,7 +297,7 @@ export default function Contact() {
                   />
 
                   {state === "error" && serverMsg && (
-                    <p className="font-body text-sm" style={{ color: "#D97148" }} role="alert">
+                    <p className="font-body text-sm" style={{ color: "#E98158" }} role="alert">
                       {serverMsg}
                     </p>
                   )}
@@ -308,13 +308,13 @@ export default function Contact() {
                     aria-busy={state === "sending"}
                     className="w-full font-sans font-semibold text-sm tracking-widest uppercase py-4 rounded-sm text-brand-chalk transition-all duration-300 disabled:opacity-60 hover:-translate-y-px"
                     style={{
-                      background: state === "sending" ? "#4A3320" : "linear-gradient(135deg, #6B1A2A 0%, #A8401E 100%)",
+                      background: state === "sending" ? "#5A4530" : "linear-gradient(135deg, #7B2535 0%, #B8502E 100%)",
                     }}
                   >
                     {state === "sending" ? "Versturen…" : "Stuur bericht"}
                   </button>
 
-                  <p className="label-caps text-[10px] text-center" style={{ color: "rgba(201,180,138,0.3)" }}>
+                  <p className="label-caps text-[10px] text-center" style={{ color: "rgba(217,196,154,0.45)" }}>
                     We antwoorden binnen een werkdag.
                   </p>
                 </form>

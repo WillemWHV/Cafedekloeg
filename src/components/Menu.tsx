@@ -3,15 +3,15 @@ const weekHappen = [
     title: "Fish & Chips",
     description: "Knapperig gebakken kabeljauw, huisgemaakte tartaarsaus, friet van het mes.",
     price: "€14,50",
-    accent: "linear-gradient(135deg, #6B1A2A 0%, #A8401E 100%)",
-    tagColor: "rgba(232,184,75,0.7)",
+    accent: "linear-gradient(135deg, #7B2535 0%, #B8502E 100%)",
+    tagColor: "rgba(248,200,91,0.8)",
   },
   {
     title: "Rendang",
     description: "Smeuïge rundvleesstoofpot met kokos en Indonesische kruiden, rijst en atjar.",
     price: "€15,50",
-    accent: "linear-gradient(135deg, #4A3320 0%, #7A5C40 100%)",
-    tagColor: "rgba(213,113,72,0.75)",
+    accent: "linear-gradient(135deg, #5A4530 0%, #8A6C50 100%)",
+    tagColor: "rgba(233,129,88,0.85)",
   },
 ];
 
@@ -23,10 +23,10 @@ const borrelhappen = [
 ];
 
 const dranken = [
-  { title: "ROTT.DROOM", sub: "ROTT. Brouwers — lokaal bier", dot: "#C4902E" },
-  { title: "Pilsje van de tap", sub: "Vers getapt, altijd lekker", dot: "#E8B84B" },
-  { title: "Huiswijn", sub: "Rood of wit, per glas of fles", dot: "#8B2535" },
-  { title: "Jenever", sub: "Jong & oud, zoals het hoort", dot: "#B5622A" },
+  { title: "ROTT.DROOM", sub: "ROTT. Brouwers — lokaal bier", dot: "#D4A03E" },
+  { title: "Pilsje van de tap", sub: "Vers getapt, altijd lekker", dot: "#F8C85B" },
+  { title: "Huiswijn", sub: "Rood of wit, per glas of fles", dot: "#9B3545" },
+  { title: "Jenever", sub: "Jong & oud, zoals het hoort", dot: "#C5723A" },
 ];
 
 export default function Menu() {
@@ -46,7 +46,7 @@ export default function Menu() {
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-16 reveal">
-          <p className="label-caps mb-4 vintage-badge" style={{ color: "#C4902E" }}>
+          <p className="label-caps mb-4 vintage-badge" style={{ color: "#D4A03E" }}>
             Eten &amp; drinken
           </p>
           <h2
@@ -55,8 +55,8 @@ export default function Menu() {
           >
             De kaart
           </h2>
-          <div className="ornament-divider mt-6 max-w-xs mx-auto" style={{ color: "rgba(196,144,46,0.3)" }}>
-            <span className="label-caps text-[10px] px-4" style={{ color: "rgba(196,144,46,0.45)" }}>
+          <div className="ornament-divider mt-6 max-w-xs mx-auto" style={{ color: "rgba(212,160,62,0.4)" }}>
+            <span className="label-caps text-[10px] px-4" style={{ color: "rgba(212,160,62,0.55)" }}>
               wekelijks wisselend
             </span>
           </div>
@@ -77,7 +77,7 @@ export default function Menu() {
               <div
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                 aria-hidden="true"
-                style={{ background: "radial-gradient(ellipse at 50% 100%, rgba(232,184,75,0.15) 0%, transparent 70%)" }}
+                style={{ background: "radial-gradient(ellipse at 50% 100%, rgba(248,200,91,0.18) 0%, transparent 70%)" }}
               />
 
               {/* Content */}
@@ -86,7 +86,7 @@ export default function Menu() {
                 <div
                   className="absolute top-4 right-4 w-6 h-6 border-t border-r"
                   aria-hidden="true"
-                  style={{ borderColor: "rgba(232,184,75,0.3)" }}
+                  style={{ borderColor: "rgba(248,200,91,0.35)" }}
                 />
 
                 <span className="label-caps text-[10px] block mb-4" style={{ color: item.tagColor }}>
@@ -97,18 +97,18 @@ export default function Menu() {
                 </h3>
                 <p
                   className="font-body text-sm leading-relaxed mb-6"
-                  style={{ color: "rgba(201,180,138,0.82)" }}
+                  style={{ color: "rgba(217,196,154,0.9)" }}
                 >
                   {item.description}
                 </p>
-                <p className="font-display text-xl font-bold" style={{ color: "#E8B84B" }}>
+                <p className="font-display text-xl font-bold" style={{ color: "#F8C85B" }}>
                   {item.price}
                 </p>
 
                 {/* Bottom shimmer on hover */}
                 <div
                   className="absolute bottom-0 left-0 h-0.5 w-0 group-hover:w-full transition-all duration-500"
-                  style={{ background: "linear-gradient(90deg, transparent, rgba(232,184,75,0.6), transparent)" }}
+                  style={{ background: "linear-gradient(90deg, transparent, rgba(248,200,91,0.7), transparent)" }}
                   aria-hidden="true"
                 />
               </div>
@@ -130,18 +130,18 @@ export default function Menu() {
                 >
                   <span
                     className="transition-colors duration-200 group-hover:text-brand-chalk"
-                    style={{ color: "rgba(201,180,138,0.78)" }}
+                    style={{ color: "rgba(217,196,154,0.88)" }}
                   >
                     {item.title}
                   </span>
                   <span
                     className="flex-1 border-b border-dotted"
-                    style={{ borderColor: "rgba(196,144,46,0.15)", marginBottom: "2px" }}
+                    style={{ borderColor: "rgba(212,160,62,0.2)", marginBottom: "2px" }}
                     aria-hidden="true"
                   />
                   <span
                     className="font-sans font-semibold tabular-nums whitespace-nowrap transition-colors duration-200 group-hover:text-brand-gold-bright"
-                    style={{ color: "rgba(196,144,46,0.85)" }}
+                    style={{ color: "rgba(212,160,62,0.95)" }}
                   >
                     {item.price}
                   </span>
@@ -164,7 +164,7 @@ export default function Menu() {
                   />
                   <div>
                     <p className="font-body font-medium text-sm text-brand-chalk">{item.title}</p>
-                    <p className="label-caps text-[10px] mt-0.5" style={{ color: "rgba(201,180,138,0.4)" }}>
+                    <p className="label-caps text-[10px] mt-0.5" style={{ color: "rgba(217,196,154,0.55)" }}>
                       {item.sub}
                     </p>
                   </div>
@@ -176,7 +176,7 @@ export default function Menu() {
 
         {/* Footer note */}
         <div className="mt-16 text-center reveal">
-          <p className="font-body italic text-sm" style={{ color: "rgba(201,180,138,0.38)" }}>
+          <p className="font-body italic text-sm" style={{ color: "rgba(217,196,154,0.5)" }}>
             De weekhappen wisselen — volg ons op Instagram voor de laatste updates.
           </p>
         </div>

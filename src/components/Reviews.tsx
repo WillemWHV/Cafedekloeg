@@ -52,7 +52,7 @@ function Stars({ rating, size = "sm" }: { rating: number; size?: "sm" | "lg" }) 
           className={`${sz} flex-shrink-0`}
           viewBox="0 0 20 20"
           aria-hidden="true"
-          style={{ fill: i <= rating ? "#E8B84B" : "rgba(201,180,138,0.2)" }}
+          style={{ fill: i <= rating ? "#F8C85B" : "rgba(217,196,154,0.25)" }}
         >
           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
         </svg>
@@ -71,21 +71,22 @@ function ReviewCard({ review, delay }: { review: Review; delay: number }) {
       className="reveal group relative rounded-sm overflow-hidden hover:-translate-y-1 transition-all duration-300"
       style={{
         transitionDelay: `${delay}s`,
-        background: "linear-gradient(155deg, #F2E8D5 0%, #EAD9BC 100%)",
-        border: "1px solid rgba(196,144,46,0.12)",
+        background: "linear-gradient(155deg, #FFFDF8 0%, #FAF6EE 100%)",
+        border: "1px solid rgba(212,160,62,0.18)",
+        boxShadow: "0 2px 12px rgba(58,42,26,0.06)",
       }}
     >
       {/* Hover effect */}
       <div
         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse at 50% 120%, rgba(107,26,42,0.07) 0%, transparent 70%)" }}
+        style={{ background: "radial-gradient(ellipse at 50% 120%, rgba(123,37,53,0.06) 0%, transparent 70%)" }}
         aria-hidden="true"
       />
 
       {/* Quote mark */}
       <span
         className="absolute top-3 right-5 font-display text-7xl leading-none select-none pointer-events-none"
-        style={{ color: "rgba(181,98,42,0.1)" }}
+        style={{ color: "rgba(197,114,58,0.12)" }}
         aria-hidden="true"
       >
         &ldquo;
@@ -94,13 +95,13 @@ function ReviewCard({ review, delay }: { review: Review; delay: number }) {
       <div className="relative p-7">
         <Stars rating={review.rating} />
 
-        <blockquote className="font-body text-sm leading-relaxed mt-4 mb-5" style={{ color: "#4A3320" }}>
+        <blockquote className="font-body text-sm leading-relaxed mt-4 mb-5" style={{ color: "#3A2A1A" }}>
           &ldquo;{displayText}&rdquo;
           {isLong && (
             <button
               onClick={() => setExpanded(!expanded)}
               className="ml-2 label-caps text-[10px] underline"
-              style={{ color: "#A8401E" }}
+              style={{ color: "#B8502E" }}
               aria-expanded={expanded}
             >
               {expanded ? "minder" : "lees meer"}
@@ -112,16 +113,16 @@ function ReviewCard({ review, delay }: { review: Review; delay: number }) {
           {/* Avatar */}
           <div
             className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 font-sans font-bold text-sm text-brand-chalk"
-            style={{ background: "linear-gradient(135deg, #6B1A2A, #A8401E)" }}
+            style={{ background: "linear-gradient(135deg, #7B2535, #B8502E)" }}
             aria-hidden="true"
           >
             {review.author.charAt(0)}
           </div>
           <div>
-            <p className="font-sans font-semibold text-sm" style={{ color: "#2A1E12" }}>
+            <p className="font-sans font-semibold text-sm" style={{ color: "#3A2A1A" }}>
               {review.author}
             </p>
-            <p className="label-caps text-[10px]" style={{ color: "#7A5C40" }}>
+            <p className="label-caps text-[10px]" style={{ color: "#8A6C50" }}>
               {review.timeAgo} · Google
             </p>
           </div>
@@ -137,7 +138,7 @@ function ReviewCard({ review, delay }: { review: Review; delay: number }) {
         {/* Bottom accent line on hover */}
         <div
           className="absolute bottom-0 left-0 h-[2px] w-0 group-hover:w-full transition-all duration-500"
-          style={{ background: "linear-gradient(90deg, #6B1A2A, #C4902E, transparent)" }}
+          style={{ background: "linear-gradient(90deg, #7B2535, #D4A03E, transparent)" }}
           aria-hidden="true"
         />
       </div>
@@ -203,13 +204,13 @@ export default function Reviews() {
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-14 reveal">
-          <p className="label-caps mb-4 vintage-badge" style={{ color: "#A8401E" }}>
+          <p className="label-caps mb-4 vintage-badge" style={{ color: "#B8502E" }}>
             Wat ze zeggen
           </p>
           <h2
             id="reviews-heading"
             className="font-display text-4xl md:text-5xl font-bold leading-tight"
-            style={{ color: "#2A1E12" }}
+            style={{ color: "#3A2A1A" }}
           >
             Praten doet de buurt.
           </h2>
@@ -217,10 +218,10 @@ export default function Reviews() {
           {/* Average rating */}
           <div className="flex items-center justify-center gap-3 mt-5">
             <Stars rating={Math.round(averageRating)} size="lg" />
-            <span className="font-display text-2xl font-bold" style={{ color: "#2A1E12" }}>
+            <span className="font-display text-2xl font-bold" style={{ color: "#3A2A1A" }}>
               {averageRating.toFixed(1)}
             </span>
-            <span className="font-body text-sm" style={{ color: "#7A5C40" }}>
+            <span className="font-body text-sm" style={{ color: "#8A6C50" }}>
               op basis van Google reviews
             </span>
           </div>
@@ -240,7 +241,7 @@ export default function Reviews() {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 label-caps text-[11px] hover:underline"
-            style={{ color: "#A8401E" }}
+            style={{ color: "#B8502E" }}
           >
             Bekijk alle reviews op Google →
           </a>

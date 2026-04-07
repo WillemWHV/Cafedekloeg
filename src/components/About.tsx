@@ -1,8 +1,28 @@
+"use client";
+
+import { motion, useInView } from "motion/react";
+import { useRef } from "react";
+import { FADE_UP, STAGGER_SLOW, STAGGER_CONTAINER, SPRING_GENTLE, EASE_OUT_EXPO } from "@/lib/motion";
+import MotionReveal from "./MotionReveal";
+
 export default function About() {
   const stats = [
-    { num: "2×", label: "Weekhap\nper week", color: "#A8401E" },
+    { num: "2\u00d7", label: "Weekhap\nper week", color: "#A8401E" },
     { num: "100%", label: "Vers\nbereide schotels", color: "#C4902E" },
     { num: "Rott.", label: "Lokale\nbieren", color: "#6B1A2A" },
+  ];
+
+  const poemRef = useRef(null);
+  const poemInView = useInView(poemRef, { once: true, amount: 0.3 });
+
+  const poemLines = [
+    { text: "Kanen knagen,", color: "#F8F3E8" },
+    { text: "hooien grazen,", color: "#F8F3E8" },
+    { text: "schaften makken.", color: "#C9B48A" },
+    { text: "Rotterdammers,", color: "#E8B84B", mt: true },
+    { text: "doen het gaarne", color: "#F8F3E8" },
+    { text: "zolang het maar,", color: "rgba(201,180,138,0.6)", italic: true, smaller: true },
+    { text: "g\u00e9\u00e9n tafelen wordt.", color: "#D97148" },
   ];
 
   return (
@@ -30,7 +50,7 @@ export default function About() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Left: Story */}
-          <div className="reveal">
+          <MotionReveal>
             <p className="label-caps mb-4" style={{ color: "#B5622A" }}>
               Over de Kloeg
             </p>
@@ -46,12 +66,14 @@ export default function About() {
               </em>
             </h2>
 
-            {/* Decorative line */}
-            <div className="flex items-center gap-3 mb-8" aria-hidden="true">
-              <div className="h-px w-12" style={{ background: "linear-gradient(90deg, #A8401E, #C4902E)" }} />
-              <div className="h-1.5 w-1.5 rounded-full" style={{ background: "#C4902E" }} />
-              <div className="h-px w-6" style={{ background: "rgba(196,144,46,0.4)" }} />
-            </div>
+            {/* Animated decorative line */}
+            <MotionReveal delay={0.2}>
+              <div className="flex items-center gap-3 mb-8" aria-hidden="true">
+                <div className="h-px w-12" style={{ background: "linear-gradient(90deg, #A8401E, #C4902E)" }} />
+                <div className="h-1.5 w-1.5 rounded-full" style={{ background: "#C4902E" }} />
+                <div className="h-px w-6" style={{ background: "rgba(196,144,46,0.4)" }} />
+              </div>
+            </MotionReveal>
 
             <div className="space-y-5 font-body leading-relaxed text-[1.05rem]" style={{ color: "#4A3320" }}>
               <p>
@@ -60,7 +82,7 @@ export default function About() {
                 zoals het hier altijd al was.
               </p>
               <p>
-                Waar vroeger café De Wandeler de buurt bediende, zet De Kloeg diezelfde
+                Waar vroeger cafe De Wandeler de buurt bediende, zet De Kloeg diezelfde
                 traditie voort: ambachtelijk, eerlijk, en met de nuchtere Rotterdamse directheid
                 die je nergens anders vindt.
               </p>
@@ -76,12 +98,14 @@ export default function About() {
             <div className="mt-10 grid grid-cols-3 gap-6">
               {stats.map(({ num, label, color }) => (
                 <div key={num} className="text-center group">
-                  <p
-                    className="font-display text-3xl font-black leading-none mb-1.5 transition-transform duration-300 group-hover:scale-110"
+                  <motion.p
+                    className="font-display text-3xl font-black leading-none mb-1.5"
                     style={{ color }}
+                    whileHover={{ scale: 1.1 }}
+                    transition={SPRING_GENTLE}
                   >
                     {num}
-                  </p>
+                  </motion.p>
                   <p
                     className="label-caps text-[10px] leading-snug whitespace-pre-line"
                     style={{ color: "#7A5C40" }}
@@ -91,10 +115,10 @@ export default function About() {
                 </div>
               ))}
             </div>
-          </div>
+          </MotionReveal>
 
           {/* Right: Quote card */}
-          <div className="reveal reveal-delay-2">
+          <MotionReveal delay={0.2}>
             <div className="relative rounded-sm overflow-hidden card-dark p-10 md:p-12">
               {/* Inner glow */}
               <div
@@ -120,17 +144,23 @@ export default function About() {
                 — Jules Deelder
               </p>
 
-              {/* Poem */}
-              <blockquote className="font-display font-black uppercase leading-snug text-2xl md:text-3xl space-y-0.5">
-                <p style={{ color: "#F8F3E8" }}>Kanen knagen,</p>
-                <p style={{ color: "#F8F3E8" }}>hooien grazen,</p>
-                <p style={{ color: "#C9B48A" }}>schaften makken.</p>
-                <p className="mt-3" style={{ color: "#E8B84B" }}>Rotterdammers,</p>
-                <p style={{ color: "#F8F3E8" }}>doen het gaarne</p>
-                <p className="font-normal italic text-xl mt-1" style={{ color: "rgba(201,180,138,0.6)" }}>
-                  zolang het maar,
-                </p>
-                <p style={{ color: "#D97148" }}>géén tafelen wordt.</p>
+              {/* Poem with staggered line reveal */}
+              <blockquote
+                ref={poemRef}
+                className="font-display font-black uppercase leading-snug text-2xl md:text-3xl"
+              >
+                {poemLines.map((line, i) => (
+                  <motion.p
+                    key={i}
+                    className={`${line.mt ? "mt-3" : ""} ${line.italic ? "font-normal italic" : ""} ${line.smaller ? "text-xl mt-1" : ""}`}
+                    style={{ color: line.color }}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={poemInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                    transition={{ duration: 0.5, delay: i * 0.1, ease: EASE_OUT_EXPO }}
+                  >
+                    {line.text}
+                  </motion.p>
+                ))}
               </blockquote>
 
               {/* Shimmer bar */}
@@ -140,7 +170,7 @@ export default function About() {
                 Kralingen · Rotterdam · Est. 2024
               </p>
             </div>
-          </div>
+          </MotionReveal>
         </div>
       </div>
     </section>

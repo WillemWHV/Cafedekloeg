@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { motion, AnimatePresence } from "motion/react";
+import { FADE_UP, STAGGER_CONTAINER, SPRING_SNAPPY, EASE_OUT_EXPO } from "@/lib/motion";
 
 const links = [
   { href: "#over-ons", label: "Over ons" },
@@ -54,18 +56,28 @@ export default function Navigation() {
   };
 
   return (
-    <header
+    <motion.header
       role="banner"
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-brand-oak/95 backdrop-blur-sm shadow-xl shadow-black/30 border-b border-brand-gold/10"
-          : "bg-gradient-to-b from-brand-oak/60 to-transparent"
-      }`}
+      className="fixed top-0 left-0 right-0 z-50"
+      animate={{
+        backgroundColor: scrolled ? "rgba(42,30,18,0.95)" : "rgba(42,30,18,0)",
+        boxShadow: scrolled ? "0 4px 30px rgba(0,0,0,0.3)" : "0 0px 0px rgba(0,0,0,0)",
+        borderBottomColor: scrolled ? "rgba(196,144,46,0.1)" : "rgba(196,144,46,0)",
+      }}
+      transition={{ duration: 0.4, ease: EASE_OUT_EXPO }}
+      style={{
+        backdropFilter: scrolled ? "blur(4px)" : "none",
+        borderBottomWidth: "1px",
+        borderBottomStyle: "solid",
+      }}
     >
       {scrolled && (
-        <div
+        <motion.div
           className="h-px"
           style={{ background: "linear-gradient(90deg, transparent, rgba(196,144,46,0.5), transparent)" }}
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 0.6, ease: EASE_OUT_EXPO }}
           aria-hidden="true"
         />
       )}
@@ -74,7 +86,7 @@ export default function Navigation() {
         <a
           href="#"
           onClick={scrollToTop}
-          aria-label="Café De Kloeg — naar boven"
+          aria-label="Cafe De Kloeg \u2014 naar boven"
           className="hover:opacity-80 transition-opacity flex-shrink-0 flex items-center gap-2.5"
         >
           <Image
@@ -99,25 +111,27 @@ export default function Navigation() {
                 aria-current={activeHash === href ? "page" : undefined}
               >
                 {label}
-                <span
-                  className="absolute -bottom-0.5 left-0 h-px transition-all duration-300"
-                  style={{
-                    background: "#C4902E",
-                    width: activeHash === href ? "100%" : "0%",
-                  }}
+                <motion.span
+                  className="absolute -bottom-0.5 left-0 h-px"
+                  style={{ background: "#C4902E" }}
+                  animate={{ width: activeHash === href ? "100%" : "0%" }}
+                  transition={{ duration: 0.3, ease: EASE_OUT_EXPO }}
                   aria-hidden="true"
                 />
               </button>
             </li>
           ))}
           <li>
-            <button
+            <motion.button
               onClick={() => handleNav("#contact")}
-              className="label-caps text-[11px] text-brand-chalk px-5 py-2.5 rounded-sm transition-all duration-200 hover:-translate-y-px"
+              whileHover={{ scale: 1.03, y: -1 }}
+              whileTap={{ scale: 0.97 }}
+              transition={SPRING_SNAPPY}
+              className="label-caps text-[11px] text-brand-chalk px-5 py-2.5 rounded-sm"
               style={{ background: "linear-gradient(135deg, #6B1A2A, #A8401E)" }}
             >
               Reserveer
-            </button>
+            </motion.button>
           </li>
         </ul>
 
@@ -140,35 +154,46 @@ export default function Navigation() {
       </nav>
 
       {/* Mobile menu */}
-      <div
-        id="mobile-menu"
-        className={`md:hidden section-dark transition-all duration-300 overflow-hidden border-t border-brand-gold/10 ${
-          menuOpen ? "max-h-96" : "max-h-0 border-transparent"
-        }`}
-        aria-hidden={!menuOpen}
-      >
-        <ul className="px-6 py-6 flex flex-col gap-5" role="list">
-          {links.map(({ href, label }) => (
-            <li key={href}>
-              <button
-                onClick={() => handleNav(href)}
-                className="label-caps text-brand-parchment hover:text-brand-gold transition-colors w-full text-left py-1"
-              >
-                {label}
-              </button>
-            </li>
-          ))}
-          <li className="pt-4 border-t border-brand-gold/10">
-            <button
-              onClick={() => handleNav("#contact")}
-              className="label-caps text-[11px] text-brand-chalk px-5 py-3 rounded-sm w-full transition-colors"
-              style={{ background: "linear-gradient(135deg, #6B1A2A, #A8401E)" }}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            id="mobile-menu"
+            className="md:hidden section-dark border-t border-brand-gold/10 overflow-hidden"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: EASE_OUT_EXPO }}
+          >
+            <motion.ul
+              className="px-6 py-6 flex flex-col gap-5"
+              role="list"
+              variants={STAGGER_CONTAINER}
+              initial="hidden"
+              animate="visible"
             >
-              Reserveer een tafel
-            </button>
-          </li>
-        </ul>
-      </div>
-    </header>
+              {links.map(({ href, label }) => (
+                <motion.li key={href} variants={FADE_UP}>
+                  <button
+                    onClick={() => handleNav(href)}
+                    className="label-caps text-brand-parchment hover:text-brand-gold transition-colors w-full text-left py-1"
+                  >
+                    {label}
+                  </button>
+                </motion.li>
+              ))}
+              <motion.li variants={FADE_UP} className="pt-4 border-t border-brand-gold/10">
+                <button
+                  onClick={() => handleNav("#contact")}
+                  className="label-caps text-[11px] text-brand-chalk px-5 py-3 rounded-sm w-full transition-colors"
+                  style={{ background: "linear-gradient(135deg, #6B1A2A, #A8401E)" }}
+                >
+                  Reserveer een tafel
+                </button>
+              </motion.li>
+            </motion.ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 }

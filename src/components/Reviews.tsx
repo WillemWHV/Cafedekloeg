@@ -1,6 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { FADE_UP, STAGGER_CONTAINER, SPRING_GENTLE, EASE_OUT_EXPO } from "@/lib/motion";
+import MotionReveal from "./MotionReveal";
 
 interface Review {
   author: string;
@@ -25,19 +28,19 @@ const fallbackReviews: Review[] = [
   {
     author: "Tripadvisor-recensent",
     rating: 5,
-    text: "Meer dan een buurtcafé in Kralingen! Vroeger bekend als café De Wandeler, nu De Kloeg — met de sfeer van een ouderwetse gezellige buurtkroeg maar met de standaarden van nu qua ontwerp, menu en drankenkaart.",
+    text: "Meer dan een buurtcaf\u00e9 in Kralingen! Vroeger bekend als caf\u00e9 De Wandeler, nu De Kloeg \u2014 met de sfeer van een ouderwetse gezellige buurtkroeg maar met de standaarden van nu qua ontwerp, menu en drankenkaart.",
     timeAgo: "recent",
   },
   {
     author: "Vaste buurtbewoner",
     rating: 5,
-    text: "Elke dag een keuze uit verse dagschotels voor prijzen waar menig restaurant niet tegenop kan. Vanavond varkenskarbonade en Noordzeetong — heerlijk! En de friet ook.",
+    text: "Elke dag een keuze uit verse dagschotels voor prijzen waar menig restaurant niet tegenop kan. Vanavond varkenskarbonade en Noordzeetong \u2014 heerlijk! En de friet ook.",
     timeAgo: "recent",
   },
   {
     author: "Kralingen-bezoeker",
     rating: 5,
-    text: "Erg uitnodigend als buurtkroeg. Geen nee te zeggen aan de spijs- en drankenkaart. De Kloeg loopt altijd vol met buurtbewoners en nieuwe gasten — terecht!",
+    text: "Erg uitnodigend als buurtkroeg. Geen nee te zeggen aan de spijs- en drankenkaart. De Kloeg loopt altijd vol met buurtbewoners en nieuwe gasten \u2014 terecht!",
     timeAgo: "recent",
   },
 ];
@@ -47,33 +50,39 @@ function Stars({ rating, size = "sm" }: { rating: number; size?: "sm" | "lg" }) 
   return (
     <div className="flex gap-0.5" aria-label={`${rating} van 5 sterren`}>
       {[1, 2, 3, 4, 5].map((i) => (
-        <svg
+        <motion.svg
           key={i}
           className={`${sz} flex-shrink-0`}
           viewBox="0 0 20 20"
           aria-hidden="true"
           style={{ fill: i <= rating ? "#E8B84B" : "rgba(201,180,138,0.2)" }}
+          initial={{ scale: 0, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: i * 0.06, duration: 0.3, type: "spring", stiffness: 200, damping: 15 }}
         >
           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-        </svg>
+        </motion.svg>
       ))}
     </div>
   );
 }
 
-function ReviewCard({ review, delay }: { review: Review; delay: number }) {
+function ReviewCard({ review }: { review: Review }) {
   const [expanded, setExpanded] = useState(false);
   const isLong = review.text.length > 220;
-  const displayText = isLong && !expanded ? review.text.slice(0, 220).trimEnd() + "…" : review.text;
+  const displayText = isLong && !expanded ? review.text.slice(0, 220).trimEnd() + "\u2026" : review.text;
 
   return (
-    <article
-      className="reveal group relative rounded-sm overflow-hidden hover:-translate-y-1 transition-all duration-300"
+    <motion.article
+      variants={FADE_UP}
+      className="group relative rounded-sm overflow-hidden"
       style={{
-        transitionDelay: `${delay}s`,
         background: "linear-gradient(155deg, #F2E8D5 0%, #EAD9BC 100%)",
         border: "1px solid rgba(196,144,46,0.12)",
       }}
+      whileHover={{ y: -6, boxShadow: "0 8px 30px rgba(42,30,18,0.2)" }}
+      transition={SPRING_GENTLE}
     >
       {/* Hover effect */}
       <div
@@ -135,13 +144,16 @@ function ReviewCard({ review, delay }: { review: Review; delay: number }) {
         </footer>
 
         {/* Bottom accent line on hover */}
-        <div
-          className="absolute bottom-0 left-0 h-[2px] w-0 group-hover:w-full transition-all duration-500"
+        <motion.div
+          className="absolute bottom-0 left-0 h-[2px]"
           style={{ background: "linear-gradient(90deg, #6B1A2A, #C4902E, transparent)" }}
+          initial={{ width: "0%" }}
+          whileHover={{ width: "100%" }}
+          transition={{ duration: 0.5, ease: EASE_OUT_EXPO }}
           aria-hidden="true"
         />
       </div>
-    </article>
+    </motion.article>
   );
 }
 
@@ -202,7 +214,7 @@ export default function Reviews() {
 
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-14 reveal">
+        <MotionReveal className="text-center mb-14">
           <p className="label-caps mb-4 vintage-badge" style={{ color: "#A8401E" }}>
             Wat ze zeggen
           </p>
@@ -224,27 +236,35 @@ export default function Reviews() {
               op basis van Google reviews
             </span>
           </div>
-        </div>
+        </MotionReveal>
 
         {/* Reviews grid */}
-        <div className="grid md:grid-cols-3 gap-6">
-          {reviews.map((review, i) => (
-            <ReviewCard key={review.author} review={review} delay={i * 0.08} />
+        <motion.div
+          className="grid md:grid-cols-3 gap-6"
+          variants={STAGGER_CONTAINER}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          {reviews.map((review) => (
+            <ReviewCard key={review.author} review={review} />
           ))}
-        </div>
+        </motion.div>
 
         {/* CTA */}
-        <div className="text-center mt-12 reveal">
-          <a
+        <MotionReveal className="text-center mt-12">
+          <motion.a
             href="https://g.page/cafedekloeg/review"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 label-caps text-[11px] hover:underline"
             style={{ color: "#A8401E" }}
+            whileHover={{ x: 4 }}
+            transition={{ duration: 0.2 }}
           >
-            Bekijk alle reviews op Google →
-          </a>
-        </div>
+            {"Bekijk alle reviews op Google →"}
+          </motion.a>
+        </MotionReveal>
       </div>
     </section>
   );

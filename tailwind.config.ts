@@ -36,25 +36,6 @@ const config: Config = {
       boxShadow: {
         "warm-lg": "0 8px 40px rgba(106,26,42,0.22), 0 4px 16px rgba(42,30,18,0.15)",
       },
-      animation: {
-        "fade-up": "fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) both",
-        "fade-in": "fadeIn 0.7s ease both",
-        "pulse-slow": "pulseSlow 4s ease-in-out infinite",
-      },
-      keyframes: {
-        fadeUp: {
-          "0%": { opacity: "0", transform: "translateY(32px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
-        },
-        fadeIn: {
-          "0%": { opacity: "0" },
-          "100%": { opacity: "1" },
-        },
-        pulseSlow: {
-          "0%, 100%": { opacity: "0.6" },
-          "50%": { opacity: "1" },
-        },
-      },
     },
   },
   plugins: [],

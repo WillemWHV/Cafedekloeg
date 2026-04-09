@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import { FADE_UP, STAGGER_CONTAINER, SPRING_SNAPPY, SPRING_GENTLE, EASE_OUT_EXPO } from "@/lib/motion";
+import MotionReveal from "./MotionReveal";
 
 type FormState = "idle" | "sending" | "success" | "error";
 
@@ -21,7 +24,7 @@ const contactInfo = [
   {
     icon: "M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z",
     label: "Openingstijden",
-    value: "Wo & Do  16:00 – 23:00\nVr & Za   16:00 – 00:00\nZo           15:00 – 21:00\nMa & Di   Gesloten",
+    value: "Wo & Do  16:00 \u2013 23:00\nVr & Za   16:00 \u2013 00:00\nZo           15:00 \u2013 21:00\nMa & Di   Gesloten",
     href: null,
     linkLabel: null,
   },
@@ -158,7 +161,7 @@ export default function Contact() {
 
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-16 reveal">
+        <MotionReveal className="text-center mb-16">
           <p className="label-caps mb-4 vintage-badge" style={{ color: "#C4902E" }}>
             Reserveren of vragen?
           </p>
@@ -173,56 +176,66 @@ export default function Contact() {
               Of stuur een berichtje.
             </span>
           </h2>
-        </div>
+        </MotionReveal>
 
         <div className="grid md:grid-cols-5 gap-12 items-start">
           {/* Contact info */}
-          <div className="md:col-span-2 space-y-9 reveal">
-            {contactInfo.map(({ icon, label, value, href, linkLabel }) => (
-              <div key={label} className="flex gap-4">
-                <div
-                  className="flex-shrink-0 w-9 h-9 rounded-sm flex items-center justify-center"
-                  style={{ background: "rgba(107,26,42,0.45)", border: "1px solid rgba(196,144,46,0.15)" }}
-                >
-                  <svg
-                    className="w-4 h-4"
-                    fill="none"
-                    stroke="#C4902E"
-                    strokeWidth={1.5}
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
+          <MotionReveal className="md:col-span-2">
+            <motion.div
+              className="space-y-9"
+              variants={STAGGER_CONTAINER}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              {contactInfo.map(({ icon, label, value, href, linkLabel }) => (
+                <motion.div key={label} className="flex gap-4" variants={FADE_UP}>
+                  <motion.div
+                    className="flex-shrink-0 w-9 h-9 rounded-sm flex items-center justify-center"
+                    style={{ background: "rgba(107,26,42,0.45)", border: "1px solid rgba(196,144,46,0.15)" }}
+                    whileHover={{ scale: 1.05, borderColor: "rgba(196,144,46,0.35)" }}
+                    transition={SPRING_GENTLE}
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" d={icon} />
-                  </svg>
-                </div>
-                <div>
-                  <p className="label-caps text-[11px] mb-1.5" style={{ color: "rgba(196,144,46,0.55)" }}>
-                    {label}
-                  </p>
-                  <p
-                    className="font-body text-sm leading-relaxed whitespace-pre-line"
-                    style={{ color: "rgba(201,180,138,0.78)" }}
-                  >
-                    {value}
-                  </p>
-                  {href && linkLabel && (
-                    <a
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="label-caps text-[11px] mt-1.5 inline-block hover:underline transition-colors"
-                      style={{ color: "#D97148" }}
-                      aria-label={`${linkLabel} (opent in nieuw tabblad)`}
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="#C4902E"
+                      strokeWidth={1.5}
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
                     >
-                      {linkLabel} →
-                    </a>
-                  )}
-                </div>
-              </div>
-            ))}
+                      <path strokeLinecap="round" strokeLinejoin="round" d={icon} />
+                    </svg>
+                  </motion.div>
+                  <div>
+                    <p className="label-caps text-[11px] mb-1.5" style={{ color: "rgba(196,144,46,0.55)" }}>
+                      {label}
+                    </p>
+                    <p
+                      className="font-body text-sm leading-relaxed whitespace-pre-line"
+                      style={{ color: "rgba(201,180,138,0.78)" }}
+                    >
+                      {value}
+                    </p>
+                    {href && linkLabel && (
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="label-caps text-[11px] mt-1.5 inline-block hover:underline transition-colors"
+                        style={{ color: "#D97148" }}
+                        aria-label={`${linkLabel} (opent in nieuw tabblad)`}
+                      >
+                        {linkLabel} {"→"}
+                      </a>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
 
             {/* Tagline */}
-            <div className="pt-4 border-t" style={{ borderColor: "rgba(196,144,46,0.1)" }}>
+            <div className="pt-4 mt-9 border-t" style={{ borderColor: "rgba(196,144,46,0.1)" }}>
               <p
                 className="font-body italic text-xs leading-relaxed"
                 style={{ color: "rgba(201,180,138,0.35)" }}
@@ -231,96 +244,149 @@ export default function Contact() {
                 Want bij De Kloeg draait het om het moment.
               </p>
             </div>
-          </div>
+          </MotionReveal>
 
           {/* Form */}
-          <div className="md:col-span-3 reveal reveal-delay-2">
+          <MotionReveal delay={0.2} className="md:col-span-3">
             <div className="rounded-sm p-8 md:p-10 card-dark">
-              {state === "success" ? (
-                <div className="text-center py-8" role="status" aria-live="polite">
-                  <div
-                    className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5"
-                    style={{ background: "linear-gradient(135deg, #6B1A2A, #A8401E)" }}
+              <AnimatePresence mode="wait">
+                {state === "success" ? (
+                  <motion.div
+                    key="success"
+                    className="text-center py-8"
+                    role="status"
+                    aria-live="polite"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.4, ease: EASE_OUT_EXPO }}
                   >
-                    <svg
-                      className="w-7 h-7 text-brand-chalk"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
+                    <div
+                      className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-5"
+                      style={{ background: "linear-gradient(135deg, #6B1A2A, #A8401E)" }}
                     >
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <h3 className="font-display text-xl font-bold text-brand-chalk mb-2">Verstuurd!</h3>
-                  <p className="font-body text-sm" style={{ color: "rgba(201,180,138,0.7)" }}>
-                    {serverMsg}
-                  </p>
-                  <button
-                    onClick={() => {
-                      setState("idle");
-                      setServerMsg("");
-                    }}
-                    className="mt-6 label-caps text-[11px] hover:underline"
-                    style={{ color: "#D97148" }}
-                  >
-                    Nog een bericht sturen
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} noValidate aria-label="Contactformulier" className="space-y-5">
-                  <div className="grid sm:grid-cols-2 gap-5">
-                    <Field
-                      label="Naam"
-                      id="contact-name"
-                      value={form.name}
-                      onChange={update("name")}
-                      placeholder="Jouw naam"
-                    />
-                    <Field
-                      label="E-mailadres"
-                      id="contact-email"
-                      type="email"
-                      value={form.email}
-                      onChange={update("email")}
-                      placeholder="jij@voorbeeld.nl"
-                    />
-                  </div>
-                  <Field
-                    label="Bericht"
-                    id="contact-message"
-                    multiline
-                    value={form.message}
-                    onChange={update("message")}
-                    placeholder="Reservering, vraag, of gewoon dag zeggen."
-                  />
-
-                  {state === "error" && serverMsg && (
-                    <p className="font-body text-sm" style={{ color: "#D97148" }} role="alert">
+                      <motion.svg
+                        className="w-7 h-7 text-brand-chalk"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <motion.path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M5 13l4 4L19 7"
+                          initial={{ pathLength: 0 }}
+                          animate={{ pathLength: 1 }}
+                          transition={{ duration: 0.5, delay: 0.2 }}
+                        />
+                      </motion.svg>
+                    </div>
+                    <h3 className="font-display text-xl font-bold text-brand-chalk mb-2">Verstuurd!</h3>
+                    <p className="font-body text-sm" style={{ color: "rgba(201,180,138,0.7)" }}>
                       {serverMsg}
                     </p>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={state === "sending"}
-                    aria-busy={state === "sending"}
-                    className="w-full font-sans font-semibold text-sm tracking-widest uppercase py-4 rounded-sm text-brand-chalk transition-all duration-300 disabled:opacity-60 hover:-translate-y-px"
-                    style={{
-                      background: state === "sending" ? "#4A3320" : "linear-gradient(135deg, #6B1A2A 0%, #A8401E 100%)",
-                    }}
+                    <motion.button
+                      onClick={() => {
+                        setState("idle");
+                        setServerMsg("");
+                      }}
+                      className="mt-6 label-caps text-[11px] hover:underline"
+                      style={{ color: "#D97148" }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.3 }}
+                    >
+                      Nog een bericht sturen
+                    </motion.button>
+                  </motion.div>
+                ) : (
+                  <motion.form
+                    key="form"
+                    onSubmit={handleSubmit}
+                    noValidate
+                    aria-label="Contactformulier"
+                    className="space-y-5"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.4, ease: EASE_OUT_EXPO }}
                   >
-                    {state === "sending" ? "Versturen…" : "Stuur bericht"}
-                  </button>
+                    <div className="grid sm:grid-cols-2 gap-5">
+                      <Field
+                        label="Naam"
+                        id="contact-name"
+                        value={form.name}
+                        onChange={update("name")}
+                        placeholder="Jouw naam"
+                      />
+                      <Field
+                        label="E-mailadres"
+                        id="contact-email"
+                        type="email"
+                        value={form.email}
+                        onChange={update("email")}
+                        placeholder="jij@voorbeeld.nl"
+                      />
+                    </div>
+                    <Field
+                      label="Bericht"
+                      id="contact-message"
+                      multiline
+                      value={form.message}
+                      onChange={update("message")}
+                      placeholder="Reservering, vraag, of gewoon dag zeggen."
+                    />
 
-                  <p className="label-caps text-[10px] text-center" style={{ color: "rgba(201,180,138,0.3)" }}>
-                    We antwoorden binnen een werkdag.
-                  </p>
-                </form>
-              )}
+                    <AnimatePresence>
+                      {state === "error" && serverMsg && (
+                        <motion.p
+                          className="font-body text-sm"
+                          style={{ color: "#D97148" }}
+                          role="alert"
+                          initial={{ opacity: 0, x: 0 }}
+                          animate={{ opacity: 1, x: [-4, 4, -4, 4, 0] }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.4 }}
+                        >
+                          {serverMsg}
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
+
+                    <motion.button
+                      type="submit"
+                      disabled={state === "sending"}
+                      aria-busy={state === "sending"}
+                      className="w-full font-sans font-semibold text-sm tracking-widest uppercase py-4 rounded-sm text-brand-chalk disabled:opacity-60"
+                      style={{
+                        background: state === "sending" ? "#4A3320" : "linear-gradient(135deg, #6B1A2A 0%, #A8401E 100%)",
+                      }}
+                      whileHover={state !== "sending" ? { scale: 1.02, y: -1 } : {}}
+                      whileTap={state !== "sending" ? { scale: 0.98 } : {}}
+                      transition={SPRING_SNAPPY}
+                    >
+                      {state === "sending" ? (
+                        <motion.span
+                          animate={{ opacity: [0.5, 1, 0.5] }}
+                          transition={{ duration: 1.5, repeat: Infinity }}
+                        >
+                          Versturen\u2026
+                        </motion.span>
+                      ) : (
+                        "Stuur bericht"
+                      )}
+                    </motion.button>
+
+                    <p className="label-caps text-[10px] text-center" style={{ color: "rgba(201,180,138,0.3)" }}>
+                      We antwoorden binnen een werkdag.
+                    </p>
+                  </motion.form>
+                )}
+              </AnimatePresence>
             </div>
-          </div>
+          </MotionReveal>
         </div>
       </div>
     </section>
